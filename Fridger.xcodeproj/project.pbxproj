@@ -51,9 +51,8 @@
 		FD0486B527E3FE460096EE98 /* Fridger */ = {
 			isa = PBXGroup;
 			children = (
-				FD0486B627E3FE460096EE98 /* FridgerApp.swift */,
-				FD0486B827E3FE460096EE98 /* ContentView.swift */,
-				FD0486BA27E3FE470096EE98 /* Assets.xcassets */,
+				FD0486C527E3FEF20096EE98 /* App */,
+				FD0486C427E3FECE0096EE98 /* Views */,
 				FD0486BC27E3FE470096EE98 /* Preview Content */,
 			);
 			path = Fridger;
@@ -65,6 +64,23 @@
 				FD0486BD27E3FE470096EE98 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FD0486C427E3FECE0096EE98 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD0486B827E3FE460096EE98 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FD0486C527E3FEF20096EE98 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FD0486BA27E3FE470096EE98 /* Assets.xcassets */,
+				FD0486B627E3FE460096EE98 /* FridgerApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
