@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Fridger
 //
-//  Created by App Factory on 3/17/22.
+//  Created by Josh Osmanski on 3/17/22.
 //
 
 import SwiftUI
