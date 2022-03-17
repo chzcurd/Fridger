@@ -11,6 +11,7 @@
 		FD0486B927E3FE460096EE98 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0486B827E3FE460096EE98 /* ContentView.swift */; };
 		FD0486BB27E3FE470096EE98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0486BA27E3FE470096EE98 /* Assets.xcassets */; };
 		FD0486BE27E3FE470096EE98 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0486BD27E3FE470096EE98 /* Preview Assets.xcassets */; };
+		FD0486C827E3FF6F0096EE98 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0486C727E3FF6F0096EE98 /* ScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		FD0486B827E3FE460096EE98 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FD0486BA27E3FE470096EE98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD0486BD27E3FE470096EE98 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FD0486C727E3FF6F0096EE98 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		FD0486B527E3FE460096EE98 /* Fridger */ = {
 			isa = PBXGroup;
 			children = (
+				FD0486C627E3FF400096EE98 /* Models */,
 				FD0486C527E3FEF20096EE98 /* App */,
 				FD0486C427E3FECE0096EE98 /* Views */,
 				FD0486BC27E3FE470096EE98 /* Preview Content */,
@@ -70,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				FD0486B827E3FE460096EE98 /* ContentView.swift */,
+				FD0486C727E3FF6F0096EE98 /* ScannerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -81,6 +85,13 @@
 				FD0486B627E3FE460096EE98 /* FridgerApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		FD0486C627E3FF400096EE98 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD0486C827E3FF6F0096EE98 /* ScannerView.swift in Sources */,
 				FD0486B927E3FE460096EE98 /* ContentView.swift in Sources */,
 				FD0486B727E3FE460096EE98 /* FridgerApp.swift in Sources */,
 			);
