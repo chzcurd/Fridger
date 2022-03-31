@@ -12,6 +12,7 @@
 		FD0486BB27E3FE470096EE98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0486BA27E3FE470096EE98 /* Assets.xcassets */; };
 		FD0486BE27E3FE470096EE98 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0486BD27E3FE470096EE98 /* Preview Assets.xcassets */; };
 		FD0486C827E3FF6F0096EE98 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0486C727E3FF6F0096EE98 /* ScannerView.swift */; };
+		FD0486CB27F632520096EE98 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = FD0486CA27F632520096EE98 /* CodeScanner */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD0486CB27F632520096EE98 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +112,9 @@
 			dependencies = (
 			);
 			name = Fridger;
+			packageProductDependencies = (
+				FD0486CA27F632520096EE98 /* CodeScanner */,
+			);
 			productName = Fridger;
 			productReference = FD0486B327E3FE460096EE98 /* Fridger.app */;
 			productType = "com.apple.product-type.application";
@@ -138,6 +143,9 @@
 				Base,
 			);
 			mainGroup = FD0486AA27E3FE460096EE98;
+			packageReferences = (
+				FD0486C927F632520096EE98 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = FD0486B427E3FE460096EE98 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,6 +308,7 @@
 				DEVELOPMENT_TEAM = UKQK23S7MW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan barcodes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -329,6 +338,7 @@
 				DEVELOPMENT_TEAM = UKQK23S7MW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan barcodes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -369,6 +379,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FD0486C927F632520096EE98 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FD0486CA27F632520096EE98 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD0486C927F632520096EE98 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD0486AB27E3FE460096EE98 /* Project object */;
 }
