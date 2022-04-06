@@ -30,7 +30,7 @@ struct ScannerView: View {
             }
         }
         .sheet(isPresented: $isPresentingScanner) {
-            CodeScannerView(codeTypes: [.ean8,.ean13,.upce], scanMode: .once, simulatedData: "Simulated Scan successful") { response in
+            CodeScannerView(codeTypes: [.ean8,.ean13,.upce], scanMode: .once, simulatedData: "0064144030941") { response in
                 if case let .success(result) = response {
                     scannedCode = result.string
                     isPresentingScanner = false
