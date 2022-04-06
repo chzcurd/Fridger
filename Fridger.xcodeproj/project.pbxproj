@@ -13,6 +13,8 @@
 		FD0486BE27E3FE470096EE98 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0486BD27E3FE470096EE98 /* Preview Assets.xcassets */; };
 		FD0486C827E3FF6F0096EE98 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0486C727E3FF6F0096EE98 /* ScannerView.swift */; };
 		FD0486CB27F632520096EE98 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = FD0486CA27F632520096EE98 /* CodeScanner */; };
+		FD44D8CF27FD38EA0089368C /* Nutritionix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD44D8CE27FD38EA0089368C /* Nutritionix.swift */; };
+		FD44D8D227FD42DE0089368C /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = FD44D8D127FD42DE0089368C /* SwiftyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,7 @@
 		FD0486BA27E3FE470096EE98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD0486BD27E3FE470096EE98 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FD0486C727E3FF6F0096EE98 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		FD44D8CE27FD38EA0089368C /* Nutritionix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutritionix.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD44D8D227FD42DE0089368C /* SwiftyJSON in Frameworks */,
 				FD0486CB27F632520096EE98 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +89,7 @@
 			children = (
 				FD0486BA27E3FE470096EE98 /* Assets.xcassets */,
 				FD0486B627E3FE460096EE98 /* FridgerApp.swift */,
+				FD44D8CE27FD38EA0089368C /* Nutritionix.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 			name = Fridger;
 			packageProductDependencies = (
 				FD0486CA27F632520096EE98 /* CodeScanner */,
+				FD44D8D127FD42DE0089368C /* SwiftyJSON */,
 			);
 			productName = Fridger;
 			productReference = FD0486B327E3FE460096EE98 /* Fridger.app */;
@@ -145,6 +151,7 @@
 			mainGroup = FD0486AA27E3FE460096EE98;
 			packageReferences = (
 				FD0486C927F632520096EE98 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				FD44D8D027FD42DE0089368C /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = FD0486B427E3FE460096EE98 /* Products */;
 			projectDirPath = "";
@@ -173,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD0486C827E3FF6F0096EE98 /* ScannerView.swift in Sources */,
+				FD44D8CF27FD38EA0089368C /* Nutritionix.swift in Sources */,
 				FD0486B927E3FE460096EE98 /* ContentView.swift in Sources */,
 				FD0486B727E3FE460096EE98 /* FridgerApp.swift in Sources */,
 			);
@@ -389,6 +397,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		FD44D8D027FD42DE0089368C /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -396,6 +412,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FD0486C927F632520096EE98 /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
+		};
+		FD44D8D127FD42DE0089368C /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD44D8D027FD42DE0089368C /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

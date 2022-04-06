@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CodeScanner
+import AVFoundation
 
 struct ScannerView: View {
     @State private var isPresentingScanner = false
@@ -26,7 +27,14 @@ struct ScannerView: View {
             Text("Scan result:")
             if let code = scannedCode {
                 //NavigationLink("Next page", destination: NextView(scannedCode: code), isActive: .constant(true)).hidden()
-                Text(code)
+                VStack{
+                    Text(code)
+                    var food = getUPC(code: code);
+                    //print(food?.item_name)
+                    Text((food?.item_name) ?? "no data :(")
+                }
+                
+                
             }
         }
         .sheet(isPresented: $isPresentingScanner) {
