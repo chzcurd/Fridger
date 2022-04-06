@@ -118,7 +118,7 @@ class ScanHandler: NSObject, ObservableObject {
         })
         
         dataTask.resume()
-        //dataTask.value(forKey: returnvar)
+        //wait for the result to show up
         while (returnvar == nil) {
             print("not done")
         }

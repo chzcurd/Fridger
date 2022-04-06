@@ -25,6 +25,7 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle(Text("Master"))
+            .onAppear(perform: {scanHandler.currentItem = nil})
         }
         
         
