@@ -8,9 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    //@State var items : [foodOBJ] = []
+    
+    @EnvironmentObject var scanHandler: ScanHandler
+    
     var body: some View {
+        NavigationView {
+            VStack {
+                Text("Item count: " + String(scanHandler.scannedItems.count))
+                
+                List{
+                    NavigationLink(destination: ScannerView().environmentObject(scanHandler)) {
+                        Text("Scan Item")
+                    }
+                }
+            }
+            .navigationBarTitle(Text("Master"))
+        }
         
-        ScannerView()
+        
+        //ScannerView()
     }
 }
 

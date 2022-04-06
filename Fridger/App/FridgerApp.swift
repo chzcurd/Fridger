@@ -11,7 +11,7 @@ import SwiftUI
 struct FridgerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(ScanHandler.shared)
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 //import SwiftyJSON
 
 struct foodOBJ : Codable {
@@ -53,61 +54,84 @@ struct foodOBJ : Codable {
     //"usda_fields":NULL
 }
 
-
-func getUPC(code : String) -> foodOBJ? {
+class ScanHandler: NSObject, ObservableObject {
+    @Published var scannedItems: Array<foodOBJ> = []
+    @Published var currentItem: foodOBJ? = nil
     
-    var returnvar : foodOBJ?
-    returnvar = nil
+    static let shared = ScanHandler()
     
-
-let headers = [
-    "X-RapidAPI-Host": "nutritionix-api.p.rapidapi.com",
-    "X-RapidAPI-Key": "af5b509b48msh1afc725e378677bp192bb1jsnf644b5962b34"
-]
-
-let request = NSMutableURLRequest(url: NSURL(string: "https://nutritionix-api.p.rapidapi.com/v1_1/item?upc=" + code)! as URL,
-                                        cachePolicy: .useProtocolCachePolicy,
-                                    timeoutInterval: 10.0)
-request.httpMethod = "GET"
-request.allHTTPHeaderFields = headers
-
-let session = URLSession.shared
-    let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-    if (error != nil) {
-        print(error)
-        return
-    } else {
-        let httpResponse = response as? HTTPURLResponse
-        print(httpResponse)
-        print(data)
+    private override init() {}
+    
+    
+    func getUPC(code : String) {
+        //@Binding var scannedItems : [foodOBJ]
+        
+        var returnvar : foodOBJ?
+        returnvar = nil
+        
+        currentItem = nil
         
         
-        var food : foodOBJ?
-        food = nil
+        let headers = [
+            "X-RapidAPI-Host": "nutritionix-api.p.rapidapi.com",
+            "X-RapidAPI-Key": "af5b509b48msh1afc725e378677bp192bb1jsnf644b5962b34"
+        ]
         
-        let decoder = JSONDecoder()
-        do {
-            food = try decoder.decode(foodOBJ.self, from: data!)
+        let request = NSMutableURLRequest(url: NSURL(string: "https://nutritionix-api.p.rapidapi.com/v1_1/item?upc=" + code)! as URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                print(error)
+                return
+            } else {
+                let httpResponse = response as? HTTPURLResponse
+                print(httpResponse)
+                print(data)
+                
+                
+                var food : foodOBJ?
+                food = nil
+                
+                let decoder = JSONDecoder()
+                do {
+                    food = try decoder.decode(foodOBJ.self, from: data!)
+                }
+                catch {
+                    print("error: ", error)
+                }
+                
+                print(food)
+                
+                
+                
+                returnvar = food
+                
+                
+                
+                
+            }
+        })
+        
+        dataTask.resume()
+        //dataTask.value(forKey: returnvar)
+        while (returnvar == nil) {
+            print("not done")
         }
-        catch {
-            print("error: ", error)
-        }
         
-        print(food)
-        returnvar = food
+        //self.scannedItems.append(returnvar!)
         
-        
-    }
-})
-
-    dataTask.resume()
-    //dataTask.value(forKey: returnvar)
-    while (returnvar == nil) {
-        print("not done")
+        print("done returnvar = ")
+        print(returnvar)
+        self.currentItem = returnvar
+        //return returnvar
     }
     
-    
-    print("done returnvar = ")
-    print(returnvar)
-    return returnvar
 }
+
+
+
