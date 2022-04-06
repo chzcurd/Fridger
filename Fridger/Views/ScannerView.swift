@@ -12,6 +12,9 @@ import AVFoundation
 struct ScannerView: View {
     @State private var isPresentingScanner = false
     @State private var scannedCode: String?
+    //@Binding var scannedItems : [foodOBJ]
+    
+    @EnvironmentObject var scanHandler: ScanHandler
 
     var body: some View {
         VStack(spacing: 10) {
@@ -25,23 +28,19 @@ struct ScannerView: View {
 
             
             Text("Scan result:")
-            if let code = scannedCode {
-                //NavigationLink("Next page", destination: NextView(scannedCode: code), isActive: .constant(true)).hidden()
+            if let item = scanHandler.currentItem {
                 VStack{
-                    Text(code)
-                    var food = getUPC(code: code);
                     //print(food?.item_name)
-                    Text((food?.item_name) ?? "no data :(")
+                    Text((item.item_name) ?? "no data :(")
                 }
-                
-                
             }
+            
         }
         .sheet(isPresented: $isPresentingScanner) {
             CodeScannerView(codeTypes: [.ean8,.ean13,.upce], scanMode: .once, simulatedData: "0064144030941") { response in
                 if case let .success(result) = response {
-                    scannedCode = result.string
                     isPresentingScanner = false
+                    scanHandler.getUPC(code: result.string)
                 }
             }
         }
