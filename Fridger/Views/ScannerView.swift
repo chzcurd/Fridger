@@ -31,7 +31,13 @@ struct ScannerView: View {
             if let item = scanHandler.currentItem {
                 VStack{
                     //print(food?.item_name)
-                    Text((item.item_name) ?? "no data :(")
+                    Text((scanHandler.currentItem?.item_name) ?? "no data :(")
+                    Button() {
+                        scanHandler.scannedItems.append(scanHandler.currentItem!)
+                    }
+                    label: {
+                    Text("Add Scanned item to list")
+                    }
                 }
             }
             
