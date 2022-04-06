@@ -7,7 +7,6 @@
 
 import SwiftUI
 import CodeScanner
-import AVFoundation
 
 struct ScannerView: View {
     @State private var isPresentingScanner = false
@@ -15,6 +14,8 @@ struct ScannerView: View {
     //@Binding var scannedItems : [foodOBJ]
     
     @EnvironmentObject var scanHandler: ScanHandler
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         VStack(spacing: 10) {
@@ -33,7 +34,14 @@ struct ScannerView: View {
                     //print(food?.item_name)
                     Text((scanHandler.currentItem?.item_name) ?? "no data :(")
                     Button() {
+                        //add the item to the cart
                         scanHandler.scannedItems.append(scanHandler.currentItem!)
+                        
+                        //remove the current item from scan handler
+                        scanHandler.currentItem = nil
+                        
+                        //close the view and go back
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                     label: {
                     Text("Add Scanned item to list")
