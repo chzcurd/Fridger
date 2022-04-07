@@ -9,6 +9,13 @@ import Foundation
 import SwiftUI
 //import SwiftyJSON
 
+struct foodItem {
+    let upc : String
+    let foodOBJ : foodOBJ?
+}
+
+
+
 struct foodOBJ : Codable {
     let old_api_id : String?
     let item_id:String?
@@ -55,8 +62,8 @@ struct foodOBJ : Codable {
 }
 
 class ScanHandler: NSObject, ObservableObject {
-    @Published var scannedItems: Array<foodOBJ> = []
-    @Published var currentItem: foodOBJ? = nil
+    @Published var scannedItems: Array<foodItem> = []
+    @Published var currentItem: foodItem? = nil
     
     static let shared = ScanHandler()
     
@@ -66,7 +73,7 @@ class ScanHandler: NSObject, ObservableObject {
     func getUPC(code : String) {
         //@Binding var scannedItems : [foodOBJ]
         
-        var returnvar : foodOBJ?
+        var returnvar : foodItem?
         returnvar = nil
         
         currentItem = nil
@@ -107,9 +114,7 @@ class ScanHandler: NSObject, ObservableObject {
                 
                 print(food)
                 
-                
-                
-                returnvar = food
+                returnvar = foodItem(upc: code, foodOBJ: food)
                 
                 
                 

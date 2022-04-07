@@ -19,12 +19,17 @@ struct ContentView: View {
                 Text("Item count: " + String(scanHandler.scannedItems.count))
                 
                 List{
+                    NavigationLink(destination: ItemListView().environmentObject(scanHandler)) {
+                        Text("View Scanned Items")
+                    }
+                    
                     NavigationLink(destination: ScannerView().environmentObject(scanHandler)) {
                         Text("Scan Item")
                     }
+                    
                 }
             }
-            .navigationBarTitle(Text("Master"))
+            .navigationBarTitle(Text("Fridger"))
             .onAppear(perform: {scanHandler.currentItem = nil})
         }
         .navigationViewStyle(StackNavigationViewStyle())
