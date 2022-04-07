@@ -93,7 +93,7 @@ struct ItemListButton: View {
 }
 
 
-struct ItemListView_Previews: PreviewProvider {
+struct ItemViews_Previews: PreviewProvider {
     static var previews: some View {
         //ItemView(upc: "12345")
         Text("no")
