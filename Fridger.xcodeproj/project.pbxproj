@@ -14,6 +14,7 @@
 		FD0486C827E3FF6F0096EE98 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0486C727E3FF6F0096EE98 /* ScannerView.swift */; };
 		FD0486CB27F632520096EE98 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = FD0486CA27F632520096EE98 /* CodeScanner */; };
 		FD44D8CF27FD38EA0089368C /* Nutritionix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD44D8CE27FD38EA0089368C /* Nutritionix.swift */; };
+		FD8C087327FF91850078F505 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8C087227FF91850078F505 /* ItemListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FD0486BD27E3FE470096EE98 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FD0486C727E3FF6F0096EE98 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		FD44D8CE27FD38EA0089368C /* Nutritionix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutritionix.swift; sourceTree = "<group>"; };
+		FD8C087227FF91850078F505 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			children = (
 				FD0486B827E3FE460096EE98 /* ContentView.swift */,
 				FD0486C727E3FF6F0096EE98 /* ScannerView.swift */,
+				FD8C087227FF91850078F505 /* ItemListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				FD0486C827E3FF6F0096EE98 /* ScannerView.swift in Sources */,
 				FD44D8CF27FD38EA0089368C /* Nutritionix.swift in Sources */,
 				FD0486B927E3FE460096EE98 /* ContentView.swift in Sources */,
+				FD8C087327FF91850078F505 /* ItemListView.swift in Sources */,
 				FD0486B727E3FE460096EE98 /* FridgerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
