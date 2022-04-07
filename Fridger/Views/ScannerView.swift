@@ -32,7 +32,8 @@ struct ScannerView: View {
             if let item = scanHandler.currentItem {
                 VStack{
                     //print(food?.item_name)
-                    Text((scanHandler.currentItem?.item_name) ?? "no data :(")
+                    Text((scanHandler.currentItem?.brand_name) ?? "no data")
+                    Text((scanHandler.currentItem?.item_name) ?? ":(")
                     Button() {
                         //add the item to the cart
                         scanHandler.scannedItems.append(scanHandler.currentItem!)
