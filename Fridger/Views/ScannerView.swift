@@ -52,7 +52,7 @@ struct ScannerView: View {
             
         }
         .sheet(isPresented: $isPresentingScanner) {
-            CodeScannerView(codeTypes: [.ean8,.ean13,.upce], scanMode: .once, simulatedData: "0064144030941") { response in
+            CodeScannerView(codeTypes: [.ean8,.ean13,.upce], scanMode: .once, simulatedData: "0015300014992") { response in
                 if case let .success(result) = response {
                     isPresentingScanner = false
                     scanHandler.getUPC(code: result.string)
