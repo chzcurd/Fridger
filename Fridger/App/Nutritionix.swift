@@ -18,47 +18,47 @@ struct foodItem {
 
 
 struct foodOBJ : Codable {
-    let old_api_id : String?
-    let item_id:String?
-    let item_name:String?
-    let leg_loc_id:String?
-    let brand_id:String?
-    let brand_name:String?
-    let item_description:String?
-    let updated_at:String?
-    let nf_ingredient_statement:String?
-    let nf_water_grams:Double?
-    let nf_calories:Double?
-    let nf_calories_from_fat:Double?
-    let nf_total_fat:Double?
-    let nf_saturated_fat:Double?
-    let nf_trans_fatty_acid:Double?
-    let nf_polyunsaturated_fat:Double?
-    let nf_monounsaturated_fat:Double?
-    let nf_cholesterol:Double?
-    let nf_sodium:Double?
-    let nf_total_carbohydrate:Double?
-    let nf_dietary_fiber:Double?
-    let nf_sugars:Double?
-    let nf_protein:Double?
-    let nf_vitamin_a_dv:Double?
-    let nf_vitamin_c_dv:Double?
-    let nf_calcium_dv:Double?
-    let nf_iron_dv:Double?
-    let nf_refuse_pct:Double?
-    let nf_servings_per_container:Double?
-    let nf_serving_size_qty:Double?
-    let nf_serving_size_unit:String?
-    let nf_serving_weight_grams:Double?
-    let allergen_contains_milk:Bool?
-    let allergen_contains_eggs:Bool?
-    let allergen_contains_fish:Bool?
-    let allergen_contains_shellfish:Bool?
-    let allergen_contains_tree_nuts:Bool?
-    let allergen_contains_peanuts:Bool?
-    let allergen_contains_wheat:Bool?
-    let allergen_contains_soybeans:Bool?
-    let allergen_contains_gluten:Bool?
+    var old_api_id : String?
+    var item_id:String?
+    var item_name:String?
+    var leg_loc_id:String?
+    var brand_id:String?
+    var brand_name:String?
+    var item_description:String?
+    var updated_at:String?
+    var nf_ingredient_statement:String?
+    var nf_water_grams:Double?
+    var nf_calories:Double?
+    var nf_calories_from_fat:Double?
+    var nf_total_fat:Double?
+    var nf_saturated_fat:Double?
+    var nf_trans_fatty_acid:Double?
+    var nf_polyunsaturated_fat:Double?
+    var nf_monounsaturated_fat:Double?
+    var nf_cholesterol:Double?
+    var nf_sodium:Double?
+    var nf_total_carbohydrate:Double?
+    var nf_dietary_fiber:Double?
+    var nf_sugars:Double?
+    var nf_protein:Double?
+    var nf_vitamin_a_dv:Double?
+    var nf_vitamin_c_dv:Double?
+    var nf_calcium_dv:Double?
+    var nf_iron_dv:Double?
+    var nf_refuse_pct:Double?
+    var nf_servings_per_container:Double?
+    var nf_serving_size_qty:Double?
+    var nf_serving_size_unit:String?
+    var nf_serving_weight_grams:Double?
+    var allergen_contains_milk:Bool?
+    var allergen_contains_eggs:Bool?
+    var allergen_contains_fish:Bool?
+    var allergen_contains_shellfish:Bool?
+    var allergen_contains_tree_nuts:Bool?
+    var allergen_contains_peanuts:Bool?
+    var allergen_contains_wheat:Bool?
+    var allergen_contains_soybeans:Bool?
+    var allergen_contains_gluten:Bool?
     //"usda_fields":NULL
 }
 
