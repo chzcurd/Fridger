@@ -19,12 +19,15 @@ struct ItemListView: View {
                 
                 List {
                     ForEach(scanHandler.scannedItems, id: \.upc) { item in
+                        let itemIndex = scanHandler.scannedItems.firstIndex(where: {item2 in item.upc == item2.upc}) ?? -1
+                        
                         NavigationLink(destination:
+                                        
                                         //navigate to item page
-                                       ItemView(upc: item.upc, quantity: item.quantity, item: item.foodOBJ!).environmentObject(scanHandler)
+                                       ItemView(itemIndex: itemIndex).environmentObject(scanHandler)
                         ) {
                             //button text
-                            ItemListButton(upc: item.upc, quantity: item.quantity, item: item.foodOBJ!).environmentObject(scanHandler)
+                            ItemListButton(itemIndex: itemIndex).environmentObject(scanHandler)
                         }
                     }
                 }
@@ -48,21 +51,19 @@ struct ItemView: View {
     
     @EnvironmentObject var scanHandler: ScanHandler
     
-    let upc : String
-    let quantity : Int
-    let item : foodOBJ
+    let itemIndex : Int
     
     var body: some View {
         
         VStack{
             
-            Text("Qty in stock: " + String(quantity))
+            Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
             
-            Text("UPC Code: " + upc)
+            Text("UPC Code: " + scanHandler.scannedItems[itemIndex].upc)
             
-            Text("Brand Name: " + (item.brand_name ?? "no data"))
-            Text("Item Name: " + (item.item_name ?? "no data"))
-            Text("Calories: " + String((item.nf_calories ?? 0.0)))
+            Text("Brand Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ?.brand_name ?? "no data"))
+            Text("Item Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ?.item_name ?? "no data"))
+            Text("Calories: " + String((scanHandler.scannedItems[itemIndex].foodOBJ?.nf_calories ?? 0.0)))
             
             
             
@@ -79,17 +80,15 @@ struct ItemListButton: View {
     
     @EnvironmentObject var scanHandler: ScanHandler
     
-    let upc : String
-    let quantity : Int
-    let item : foodOBJ
+    let itemIndex : Int
     
     var body: some View {
         
         HStack{
             
-            Text((item.brand_name ?? "") + " " + (item.item_name ?? ""))
+            Text((scanHandler.scannedItems[itemIndex].foodOBJ?.brand_name ?? "") + " " + (scanHandler.scannedItems[itemIndex].foodOBJ?.item_name ?? ""))
             Spacer()
-            Text("Qty: " + String(quantity))
+            Text("Qty: " + String(scanHandler.scannedItems[itemIndex].quantity))
             
             
             
