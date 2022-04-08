@@ -34,8 +34,8 @@ struct ScannerView: View {
             if (scanHandler.currentItem != nil && alreadyScanned == false) {
                 VStack{
                     //print(food?.item_name)
-                    Text((scanHandler.currentItem?.foodOBJ?.brand_name) ?? "no data")
-                    Text((scanHandler.currentItem?.foodOBJ?.item_name) ?? ":(")
+                    Text((scanHandler.currentItem?.foodOBJ.brand_name) ?? "no data")
+                    Text((scanHandler.currentItem?.foodOBJ.item_name) ?? ":(")
                     Button() {
                         //add the item to the cart
                         scanHandler.scannedItems.append(scanHandler.currentItem!)
@@ -55,8 +55,8 @@ struct ScannerView: View {
             if alreadyScanned {
                 Text("Item is already scanned, What would you like to do?")
                 
-                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ?.brand_name) ?? "no item brand provided")
-                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ?.item_name) ?? "no item name provided")
+                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ.brand_name) )
+                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ.item_name) )
                 
                 Button() {
                     //remove the item from the cart
