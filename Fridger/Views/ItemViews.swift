@@ -21,10 +21,10 @@ struct ItemListView: View {
                     ForEach(scanHandler.scannedItems, id: \.upc) { item in
                         NavigationLink(destination:
                                         //navigate to item page
-                                       ItemView(upc: item.upc, item: item.foodOBJ!).environmentObject(scanHandler)
+                                       ItemView(upc: item.upc, quantity: item.quantity, item: item.foodOBJ!).environmentObject(scanHandler)
                         ) {
                             //button text
-                            ItemListButton(upc: item.upc, item: item.foodOBJ!).environmentObject(scanHandler)
+                            ItemListButton(upc: item.upc, quantity: item.quantity, item: item.foodOBJ!).environmentObject(scanHandler)
                         }
                     }
                 }
@@ -49,11 +49,14 @@ struct ItemView: View {
     @EnvironmentObject var scanHandler: ScanHandler
     
     let upc : String
+    let quantity : Int
     let item : foodOBJ
     
     var body: some View {
         
         VStack{
+            
+            Text("Qty in stock: " + String(quantity))
             
             Text("UPC Code: " + upc)
             
@@ -77,15 +80,16 @@ struct ItemListButton: View {
     @EnvironmentObject var scanHandler: ScanHandler
     
     let upc : String
+    let quantity : Int
     let item : foodOBJ
     
     var body: some View {
         
         HStack{
             
-            Text(upc)
-            Spacer()
             Text((item.brand_name ?? "") + " " + (item.item_name ?? ""))
+            Spacer()
+            Text("Qty: " + String(quantity))
             
             
             

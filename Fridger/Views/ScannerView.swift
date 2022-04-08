@@ -55,6 +55,7 @@ struct ScannerView: View {
             if alreadyScanned {
                 Text("Item is already scanned, What would you like to do?")
                 
+                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ?.brand_name) ?? "no item brand provided")
                 Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ?.item_name) ?? "no item name provided")
                 
                 Button() {
@@ -72,6 +73,36 @@ struct ScannerView: View {
                 label: {
                 Text("Remove scanned item from database")
                 }
+                
+                Spacer()
+                
+                Text("Qty in stock: " + String(scanHandler.scannedItems[alreadyScannedIndex].quantity))
+                //add/remove quantity button
+                HStack {
+                    Button() {
+                        //remove stock if more than zero items
+                        if scanHandler.scannedItems[alreadyScannedIndex].quantity > 0 {
+                            scanHandler.scannedItems[alreadyScannedIndex].quantity-=1
+                        }
+                    }
+                    label: {
+                        Text("Remove Stock").padding()
+                    }
+                    
+                    Spacer()
+                    
+                    Button() {
+                        //add stock
+                        scanHandler.scannedItems[alreadyScannedIndex].quantity+=1
+                        
+                    }
+                    label: {
+                        Text("Add Stock").padding()
+                    }
+                    
+                }
+                Spacer()
+                
             }
             
         }

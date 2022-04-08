@@ -11,7 +11,8 @@ import SwiftUI
 
 struct foodItem {
     let upc : String
-    let foodOBJ : foodOBJ?
+    var quantity : Int
+    var foodOBJ : foodOBJ?
 }
 
 
@@ -114,7 +115,7 @@ class ScanHandler: NSObject, ObservableObject {
                 
                 print(food)
                 
-                returnvar = foodItem(upc: code, foodOBJ: food)
+                returnvar = foodItem(upc: code, quantity: 1, foodOBJ: food)
                 
                 
                 
