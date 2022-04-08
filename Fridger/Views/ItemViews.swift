@@ -153,26 +153,48 @@ struct ItemDeleteView: View {
     
     @Binding var itemIndex : Int
     @Binding var alreadyScanned : Bool
+    @State private var confirmDelete = false
     
     var body: some View {
         
         if itemIndex >= 0 {
             
-            Button() {
-                //remove the item from the cart
-                scanHandler.scannedItems.remove(at: itemIndex)
-                
-                //remove the current item from scan handler
-                scanHandler.currentItem = nil
-                alreadyScanned = false
-                itemIndex = -1
-                
-                
-                //close the view and go back
-                self.presentationMode.wrappedValue.dismiss()
-            }
+            if !confirmDelete {
+                Button() {
+                    confirmDelete = true
+                }
             label: {
-            Text("Remove scanned item from database")
+                Text("Remove scanned item from database")
+            }
+            }
+            else {
+                
+                HStack{
+                    Button() {
+                        confirmDelete = false
+                    }
+                label: {
+                    Text("KEEP ITEM").padding(.trailing)
+                }
+                    
+                    Button() {
+                        //remove the item from the cart
+                        scanHandler.scannedItems.remove(at: itemIndex)
+                        
+                        //remove the current item from scan handler
+                        scanHandler.currentItem = nil
+                        alreadyScanned = false
+                        itemIndex = -1
+                        
+                        
+                        //close the view and go back
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                    label: {
+                        Text("CONFIRM DELETE").padding(.leading)
+                    }
+                }
+            
             }
         
         }
