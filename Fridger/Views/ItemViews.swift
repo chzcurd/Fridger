@@ -24,7 +24,7 @@ struct ItemListView: View {
                                        ItemView(upc: item.upc, item: item.foodOBJ!).environmentObject(scanHandler)
                         ) {
                             //button text
-                            ItemListButton(upc: item.upc).environmentObject(scanHandler)
+                            ItemListButton(upc: item.upc, item: item.foodOBJ!).environmentObject(scanHandler)
                         }
                     }
                 }
@@ -55,12 +55,11 @@ struct ItemView: View {
         
         VStack{
             
-            Text(upc)
+            Text("UPC Code: " + upc)
             
-            
-            Text(item.brand_name ?? "")
-            Text(item.item_name ?? "")
-            
+            Text("Brand Name: " + (item.brand_name ?? "no data"))
+            Text("Item Name: " + (item.item_name ?? "no data"))
+            Text("Calories: " + String((item.nf_calories ?? 0.0)))
             
             
             
@@ -78,12 +77,17 @@ struct ItemListButton: View {
     @EnvironmentObject var scanHandler: ScanHandler
     
     let upc : String
+    let item : foodOBJ
     
     var body: some View {
         
-        VStack{
+        HStack{
             
             Text(upc)
+            Spacer()
+            Text((item.brand_name ?? "") + " " + (item.item_name ?? ""))
+            
+            
             
             
         }
