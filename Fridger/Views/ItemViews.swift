@@ -101,7 +101,7 @@ struct ItemListButton: View {
 
 
 
-//view of the it
+//view of the item Qty Edit controls
 struct ItemQtyEditView: View {
     
     @EnvironmentObject var scanHandler: ScanHandler
@@ -137,6 +137,44 @@ struct ItemQtyEditView: View {
                 Text("Add Stock").padding(.leading)
             }
         }
+        }
+        
+    }
+    
+}
+
+
+
+//view of the item Qty Edit controls
+struct ItemDeleteView: View {
+    
+    @EnvironmentObject var scanHandler: ScanHandler
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    @Binding var itemIndex : Int
+    @Binding var alreadyScanned : Bool
+    
+    var body: some View {
+        
+        if itemIndex >= 0 {
+            
+            Button() {
+                //remove the item from the cart
+                scanHandler.scannedItems.remove(at: itemIndex)
+                
+                //remove the current item from scan handler
+                scanHandler.currentItem = nil
+                alreadyScanned = false
+                itemIndex = -1
+                
+                
+                //close the view and go back
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            label: {
+            Text("Remove scanned item from database")
+            }
+        
         }
         
     }

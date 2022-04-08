@@ -58,22 +58,7 @@ struct ScannerView: View {
                 Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ.brand_name) )
                 Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ.item_name) )
                 
-                Button() {
-                    //remove the item from the cart
-                    scanHandler.scannedItems.remove(at: alreadyScannedIndex)
-                    
-                    //remove the current item from scan handler
-                    scanHandler.currentItem = nil
-                    alreadyScanned = false
-                    alreadyScannedIndex = -1
-                    
-                    
-                    //close the view and go back
-                    self.presentationMode.wrappedValue.dismiss()
-                }
-                label: {
-                Text("Remove scanned item from database")
-                }
+                ItemDeleteView(itemIndex: $alreadyScannedIndex, alreadyScanned: $alreadyScanned).environmentObject(scanHandler)
                 
                 Spacer()
                 
