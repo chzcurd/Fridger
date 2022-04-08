@@ -62,10 +62,11 @@ struct ScannerView: View {
                     //remove the item from the cart
                     scanHandler.scannedItems.remove(at: alreadyScannedIndex)
                     
-                    
                     //remove the current item from scan handler
                     scanHandler.currentItem = nil
                     alreadyScanned = false
+                    alreadyScannedIndex = -1
+                    
                     
                     //close the view and go back
                     self.presentationMode.wrappedValue.dismiss()
@@ -76,36 +77,15 @@ struct ScannerView: View {
                 
                 Spacer()
                 
-                Text("Qty in stock: " + String(scanHandler.scannedItems[alreadyScannedIndex].quantity))
-                //add/remove quantity button
-                HStack {
-                    Button() {
-                        //remove stock if more than zero items
-                        if scanHandler.scannedItems[alreadyScannedIndex].quantity > 0 {
-                            scanHandler.scannedItems[alreadyScannedIndex].quantity-=1
-                        }
-                    }
-                    label: {
-                        Text("Remove Stock").padding()
-                    }
+                ItemQtyEditView(itemIndex: $alreadyScannedIndex).environmentObject(scanHandler)
                     
-                    Spacer()
-                    
-                    Button() {
-                        //add stock
-                        scanHandler.scannedItems[alreadyScannedIndex].quantity+=1
-                        
-                    }
-                    label: {
-                        Text("Add Stock").padding()
-                    }
-                    
-                }
+            }
                 Spacer()
                 
             }
             
-        }
+    
+    
         .sheet(isPresented: $isPresentingScanner) {
             CodeScannerView(codeTypes: [.ean8,.ean13,.upce], scanMode: .once, simulatedData: "0015300014992") { response in
                 if case let .success(result) = response {
