@@ -11,6 +11,8 @@ import CodeScanner
 struct ScannerView: View {
     @State private var isPresentingScanner = false
     @State private var scannedCode: String?
+    @State private var alreadyScanned = false
+    @State private var alreadyScannedIndex = 0
     //@Binding var scannedItems : [foodOBJ]
     
     @EnvironmentObject var scanHandler: ScanHandler
@@ -29,7 +31,7 @@ struct ScannerView: View {
 
             
             Text("Scan result:")
-            if let item = scanHandler.currentItem {
+            if (scanHandler.currentItem != nil && alreadyScanned == false) {
                 VStack{
                     //print(food?.item_name)
                     Text((scanHandler.currentItem?.foodOBJ?.brand_name) ?? "no data")
@@ -49,13 +51,50 @@ struct ScannerView: View {
                     }
                 }
             }
+            //actions when item is already scanned
+            if alreadyScanned {
+                Text("Item is already scanned, What would you like to do?")
+                
+                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ?.item_name) ?? "no item name provided")
+                
+                Button() {
+                    //remove the item from the cart
+                    scanHandler.scannedItems.remove(at: alreadyScannedIndex)
+                    
+                    
+                    //remove the current item from scan handler
+                    scanHandler.currentItem = nil
+                    alreadyScanned = false
+                    
+                    //close the view and go back
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                label: {
+                Text("Remove scanned item from database")
+                }
+            }
             
         }
         .sheet(isPresented: $isPresentingScanner) {
             CodeScannerView(codeTypes: [.ean8,.ean13,.upce], scanMode: .once, simulatedData: "0015300014992") { response in
                 if case let .success(result) = response {
+                    //close scanner
                     isPresentingScanner = false
-                    scanHandler.getUPC(code: result.string)
+                    
+                    //check if scanned item already exists in database
+                    alreadyScannedIndex = scanHandler.scannedItems.firstIndex(where: {item in item.upc == result.string}) ?? -1
+                    if alreadyScannedIndex == -1 {
+                        alreadyScanned = false
+                        scanHandler.getUPC(code: result.string)
+                    }
+                    else{
+                        scanHandler.currentItem = nil
+                        alreadyScanned = true
+                    }
+                    
+                    
+                    
+                    
                 }
             }
         }
@@ -64,6 +103,6 @@ struct ScannerView: View {
 
 struct ScannerView_Previews: PreviewProvider {
     static var previews: some View {
-        ScannerView()
+        Text("no")
     }
 }
