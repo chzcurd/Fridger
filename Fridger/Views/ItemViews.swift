@@ -100,6 +100,51 @@ struct ItemListButton: View {
 }
 
 
+
+//view of the it
+struct ItemQtyEditView: View {
+    
+    @EnvironmentObject var scanHandler: ScanHandler
+    
+    @Binding var itemIndex : Int
+    
+    var body: some View {
+        
+        if itemIndex >= 0 {
+            
+        
+        Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
+        //add/remove quantity button
+        HStack {
+            Button() {
+                //remove stock if more than zero items
+                if scanHandler.scannedItems[itemIndex].quantity > 0 {
+                    scanHandler.scannedItems[itemIndex].quantity-=1
+                }
+            }
+            label: {
+                Text("Remove Stock").padding(.trailing)
+            }
+            
+            //Spacer()
+            
+            Button() {
+                //add stock
+                scanHandler.scannedItems[itemIndex].quantity+=1
+                
+            }
+            label: {
+                Text("Add Stock").padding(.leading)
+            }
+        }
+        }
+        
+    }
+    
+}
+
+
+
 struct ItemViews_Previews: PreviewProvider {
     static var previews: some View {
         //ItemView(upc: "12345")
