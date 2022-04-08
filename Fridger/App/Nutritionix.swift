@@ -12,7 +12,7 @@ import SwiftUI
 struct foodItem {
     let upc : String
     var quantity : Int
-    var foodOBJ : foodOBJ?
+    var foodOBJ : foodOBJ
 }
 
 
@@ -20,10 +20,10 @@ struct foodItem {
 struct foodOBJ : Codable {
     var old_api_id : String?
     var item_id:String?
-    var item_name:String?
+    var item_name:String
     var leg_loc_id:String?
     var brand_id:String?
-    var brand_name:String?
+    var brand_name:String
     var item_description:String?
     var updated_at:String?
     var nf_ingredient_statement:String?
@@ -115,7 +115,7 @@ class ScanHandler: NSObject, ObservableObject {
                 
                 print(food)
                 
-                returnvar = foodItem(upc: code, quantity: 1, foodOBJ: food)
+                returnvar = foodItem(upc: code, quantity: 1, foodOBJ: food ?? foodOBJ(item_name: "Item name not set", brand_name: "Brand name not set"))
                 
                 
                 

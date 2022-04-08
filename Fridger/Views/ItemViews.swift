@@ -61,9 +61,9 @@ struct ItemView: View {
             
             Text("UPC Code: " + scanHandler.scannedItems[itemIndex].upc)
             
-            Text("Brand Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ?.brand_name ?? "no data"))
-            Text("Item Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ?.item_name ?? "no data"))
-            Text("Calories: " + String((scanHandler.scannedItems[itemIndex].foodOBJ?.nf_calories ?? 0.0)))
+            Text("Brand Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ))
+            Text("Item Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
+            Text("Calories: " + String((scanHandler.scannedItems[itemIndex].foodOBJ.nf_calories ?? 0.0)))
             
             
             
@@ -86,7 +86,7 @@ struct ItemListButton: View {
         
         HStack{
             
-            Text((scanHandler.scannedItems[itemIndex].foodOBJ?.brand_name ?? "") + " " + (scanHandler.scannedItems[itemIndex].foodOBJ?.item_name ?? ""))
+            Text((scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ) + " " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
             Spacer()
             Text("Qty: " + String(scanHandler.scannedItems[itemIndex].quantity))
             
