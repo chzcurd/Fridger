@@ -16,7 +16,12 @@ struct ItemListView: View {
             VStack {
                 //getItemCountInFridge()
                 //var itemCount = getItemCountInFridge().environmentObject(scanHandler)
-                Text("Item count: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
+                HStack{
+                    Text("Database Items: " + String(scanHandler.scannedItems.count))
+                    Text("|")
+                    Text("In Fridge Count: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
+
+                }
                 
                 List {
                     ForEach(scanHandler.scannedItems, id: \.upc) { item in
