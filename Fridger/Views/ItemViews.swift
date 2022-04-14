@@ -58,18 +58,30 @@ struct ItemView: View {
         VStack{
             
             //Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
-            ItemDeleteView(itemIndex: $itemIndex, alreadyScanned: .constant(true)).environmentObject(scanHandler)
+            
             
             if (itemIndex >= 0) {
                 
-            
+                ItemQtyEditView(itemIndex: $itemIndex)
+                
+                Spacer()
+                
                 Text("UPC Code: " + scanHandler.scannedItems[itemIndex].upc)
             
                 Text("Brand Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ))
                 Text("Item Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
                 Text("Calories: " + String((scanHandler.scannedItems[itemIndex].foodOBJ.nf_calories ?? 0.0)))
+                
+                Spacer()
+                ItemDeleteView(itemIndex: $itemIndex, alreadyScanned: .constant(true)).environmentObject(scanHandler)
+                Spacer()
+
             
             }
+            
+            
+            
+
             
             
         }
