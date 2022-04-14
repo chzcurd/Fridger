@@ -19,7 +19,7 @@ struct ItemListView: View {
                 
                 List {
                     ForEach(scanHandler.scannedItems, id: \.upc) { item in
-                        let itemIndex = scanHandler.scannedItems.firstIndex(where: {item2 in item.upc == item2.upc}) ?? -1
+                        var itemIndex = scanHandler.scannedItems.firstIndex(where: {item2 in item.upc == item2.upc}) ?? -1
                         
                         NavigationLink(destination:
                                         
@@ -51,21 +51,25 @@ struct ItemView: View {
     
     @EnvironmentObject var scanHandler: ScanHandler
     
-    let itemIndex : Int
+    @State var itemIndex : Int
     
     var body: some View {
         
         VStack{
             
-            Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
+            //Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
+            ItemDeleteView(itemIndex: $itemIndex, alreadyScanned: .constant(true)).environmentObject(scanHandler)
             
-            Text("UPC Code: " + scanHandler.scannedItems[itemIndex].upc)
+            if (itemIndex >= 0) {
+                
             
-            Text("Brand Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ))
-            Text("Item Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
-            Text("Calories: " + String((scanHandler.scannedItems[itemIndex].foodOBJ.nf_calories ?? 0.0)))
+                Text("UPC Code: " + scanHandler.scannedItems[itemIndex].upc)
             
+                Text("Brand Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ))
+                Text("Item Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
+                Text("Calories: " + String((scanHandler.scannedItems[itemIndex].foodOBJ.nf_calories ?? 0.0)))
             
+            }
             
             
         }
@@ -84,15 +88,18 @@ struct ItemListButton: View {
     
     var body: some View {
         
-        HStack{
+        if (itemIndex >= 0 && itemIndex < scanHandler.scannedItems.count){
+        
+            HStack{
             
-            Text((scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ) + " " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
-            Spacer()
-            Text("Qty: " + String(scanHandler.scannedItems[itemIndex].quantity))
+                Text((scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ) + " " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
+                Spacer()
+                Text("Qty: " + String(scanHandler.scannedItems[itemIndex].quantity))
             
             
             
             
+            }
         }
         
     }
