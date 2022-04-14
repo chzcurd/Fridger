@@ -10,12 +10,13 @@ import SwiftUI
 struct ItemListView: View {
     
     @EnvironmentObject var scanHandler: ScanHandler
-    
     var body: some View {
         
         NavigationView {
             VStack {
-                Text("Item count: " + String(scanHandler.scannedItems.count))
+                //getItemCountInFridge()
+                //var itemCount = getItemCountInFridge().environmentObject(scanHandler)
+                Text("Item count: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
                 
                 List {
                     ForEach(scanHandler.scannedItems, id: \.upc) { item in
@@ -220,6 +221,18 @@ struct ItemDeleteView: View {
         
     }
     
+}
+
+func getItemCountInFridge(scannedItems: [foodItem]) -> Int {
+    
+    var total = 0
+    
+    scannedItems.forEach { item in
+        total += item.quantity
+    }
+    
+    
+    return total
 }
 
 
