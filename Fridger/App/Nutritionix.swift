@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 //import SwiftyJSON
 
-struct foodItem {
+struct foodItem: Codable {
     let upc : String
     var quantity : Int
     var foodOBJ : foodOBJ
@@ -63,7 +63,9 @@ struct foodOBJ : Codable {
 }
 
 class ScanHandler: NSObject, ObservableObject {
-    @Published var scannedItems: Array<foodItem> = []
+    let defaults = UserDefaults()
+    
+    @Published var scannedItems: Array<foodItem> =  []
     @Published var currentItem: foodItem? = nil
     
     static let shared = ScanHandler()
@@ -136,6 +138,17 @@ class ScanHandler: NSObject, ObservableObject {
         self.currentItem = returnvar
         //return returnvar
     }
+    
+    func saveData() {
+        let userDefaults = UserDefaults()
+        userDefaults.setValue(try? PropertyListEncoder().encode(scannedItems), forKey: "scannedItems")
+        
+    }
+    
+    func loadData() {
+        scannedItems = defaults.value(forKey: "scannedItems") as! Array<foodItem>
+    }
+    
     
 }
 

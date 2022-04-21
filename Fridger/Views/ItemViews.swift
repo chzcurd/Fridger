@@ -70,6 +70,15 @@ struct ItemView: View {
                 
                 ItemQtyEditView(itemIndex: $itemIndex)
                 
+                NavigationLink(destination:
+                                //navigate to item page
+                               ItemEditView(foodObj: $scanHandler.scannedItems[itemIndex].foodOBJ)
+                ) {
+                    //button text
+                    Text("Edit Item Details")
+                }
+                
+                
                 Spacer()
                 
                 Text("UPC Code: " + scanHandler.scannedItems[itemIndex].upc)
@@ -241,6 +250,98 @@ func getItemCountInFridge(scannedItems: [foodItem]) -> Int {
 }
 
 
+struct ItemEditView: View {
+    
+    @EnvironmentObject var scanHandler: ScanHandler
+    
+    @Binding var foodObj : foodOBJ
+    
+    var body: some View {
+        
+        ScrollView{
+            VStack{
+            //Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
+                Text("Edit Food Details")
+            
+                noNillTextEditButton(label: "Brand Name", value: $foodObj.brand_name)
+                noNillTextEditButton(label: "Item Name", value: $foodObj.item_name )
+                numberTextEditButton(label: "Calories", value: $foodObj.nf_calories)
+            }
+            }
+            
+            
+            
+
+            
+            
+        
+        
+    }
+    
+}
+
+struct numberTextEditButton: View {
+    @State private var string: String = ""
+    var label: String
+    @Binding var value: Double?
+    
+    //@Binding var doubleToSave: Double
+    
+    func save() {
+        value = Double(string) ?? 0.0
+    }
+    
+    var body: some View {
+        VStack {
+            Text("\(label): \(String(value ?? 0.0))").padding(.top)
+            TextField("\(label)", text: $string).keyboardType(.decimalPad).padding(.leading).padding(.trailing)
+            Button(action: save) { Text("Set")}.padding(.bottom)
+        }
+    }
+    
+}
+
+struct TextEditButton: View {
+    @State private var string: String = ""
+    var label: String
+    @Binding var value: String?
+    
+    //@Binding var doubleToSave: Double
+    
+    func save() {
+        value = string
+    }
+    
+    var body: some View {
+        VStack {
+            Text("\(label): \(value ?? "")").padding(.top)
+            TextField("\(label)", text: $string).padding(.leading).padding(.trailing)
+            Button(action: save) { Text("Set")}.padding(.bottom)
+        }
+    }
+    
+}
+
+struct noNillTextEditButton: View {
+    @State private var string: String = ""
+    var label: String
+    @Binding var value: String
+    
+    //@Binding var doubleToSave: Double
+    
+    func save() {
+        value = string
+    }
+    
+    var body: some View {
+        VStack {
+            Text("\(label): \(value)").padding(.top)
+            TextField("\(label)", text: $string).padding(.leading).padding(.trailing)
+            Button(action: save) { Text("Set")}.padding(.bottom)
+        }
+    }
+    
+}
 
 struct ItemViews_Previews: PreviewProvider {
     static var previews: some View {
