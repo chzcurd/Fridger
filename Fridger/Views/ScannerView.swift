@@ -50,7 +50,14 @@ struct ScannerView: View {
                     Text("Add Scanned item to list")
                     }
                     
-                    
+                    NavigationLink(destination:
+                                    Text("not implemented")
+                                   //crashes for some reason
+                                   //ItemEditView(foodObj: $scanHandler.currentItem.foodOBJ)
+                    ) {
+                        //button text
+                        Text("NOT IMPLEMENTED BEFORE ADD COMPLETE Edit Item Details")
+                    }.padding(.top)
                     
                 }
             }
@@ -66,6 +73,13 @@ struct ScannerView: View {
                 Spacer()
                 
                 ItemQtyEditView(itemIndex: $alreadyScannedIndex).environmentObject(scanHandler)
+                NavigationLink(destination:
+                                //navigate to item page
+                               ItemEditView(foodObj: $scanHandler.scannedItems[alreadyScannedIndex].foodOBJ)
+                ) {
+                    //button text
+                    Text("Edit Item Details")
+                }.padding(.top)
                     
             }
                 Spacer()
