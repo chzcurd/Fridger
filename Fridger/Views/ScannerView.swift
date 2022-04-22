@@ -49,6 +49,9 @@ struct ScannerView: View {
                     label: {
                     Text("Add Scanned item to list")
                     }
+                    
+                    
+                    
                 }
             }
             //actions when item is already scanned

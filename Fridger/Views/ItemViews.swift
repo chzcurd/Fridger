@@ -76,7 +76,7 @@ struct ItemView: View {
                 ) {
                     //button text
                     Text("Edit Item Details")
-                }
+                }.padding(.top)
                 
                 
                 Spacer()
