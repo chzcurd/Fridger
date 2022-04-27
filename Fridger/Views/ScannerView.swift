@@ -19,17 +19,17 @@ struct ScannerView: View {
     @EnvironmentObject var scanHandler: ScanHandler
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     var body: some View {
         VStack(spacing: 10) {
-
+            
             Button() {
                 isPresentingScanner = true
             }
-            label: {
+        label: {
             Label("Scan barcode", systemImage: "barcode.viewfinder")
-            }
-
+        }
+            
             
             Text("Scan result:")
             if (scanHandler.currentItem != nil && alreadyScanned == false) {
@@ -51,12 +51,12 @@ struct ScannerView: View {
                         //close the view and go back
                         self.presentationMode.wrappedValue.dismiss()
                     }
-                    label: {
+                label: {
                     Text("Add Scanned item to list")
-                    }
+                }
                     
                     NavigationLink(destination:
-                                   ItemEditView(foodObj: $theItemThatWasScanned)
+                                    ItemEditView(foodObj: $theItemThatWasScanned)
                     ) {
                         //button text
                         Text("Edit Item Details")
@@ -83,14 +83,14 @@ struct ScannerView: View {
                     //button text
                     Text("Edit Item Details")
                 }.padding(.top)
-                    
-            }
-                Spacer()
                 
             }
+            Spacer()
             
-    
-    
+        }
+        
+        
+        
         .sheet(isPresented: $isPresentingScanner) {
             CodeScannerView(codeTypes: [.ean8,.ean13,.upce], scanMode: .once, simulatedData: "0015300014992") { response in
                 if case let .success(result) = response {
@@ -104,7 +104,7 @@ struct ScannerView: View {
                         scanHandler.getUPC(code: result.string)
                         //set the editable food obj to the result that came back from the barcode api
                         theItemThatWasScanned = scanHandler.currentItem!.foodOBJ
-
+                        
                     }
                     else{
                         scanHandler.currentItem = nil

@@ -20,7 +20,7 @@ struct ItemListView: View {
                     Text("Database Items: " + String(scanHandler.scannedItems.count))
                     Text("|")
                     Text("In Fridge Count: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
-
+                    
                 }
                 
                 List {
@@ -82,7 +82,7 @@ struct ItemView: View {
                 Spacer()
                 
                 Text("UPC Code: " + scanHandler.scannedItems[itemIndex].upc)
-            
+                
                 Text("Brand Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ))
                 Text("Item Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
                 Text("Calories: " + String((scanHandler.scannedItems[itemIndex].foodOBJ.nf_calories ?? 0.0)))
@@ -90,13 +90,13 @@ struct ItemView: View {
                 Spacer()
                 ItemDeleteView(itemIndex: $itemIndex, alreadyScanned: .constant(true)).environmentObject(scanHandler)
                 Spacer()
-
-            
+                
+                
             }
             
             
             
-
+            
             
             
         }
@@ -116,16 +116,16 @@ struct ItemListButton: View {
     var body: some View {
         
         if (itemIndex >= 0 && itemIndex < scanHandler.scannedItems.count){
-        
-            HStack{
             
+            HStack{
+                
                 Text((scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ) + " " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
                 Spacer()
                 Text("Qty: " + String(scanHandler.scannedItems[itemIndex].quantity))
-            
-            
-            
-            
+                
+                
+                
+                
             }
         }
         
@@ -146,31 +146,31 @@ struct ItemQtyEditView: View {
         
         if itemIndex >= 0 {
             
-        
-        Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
-        //add/remove quantity button
-        HStack {
-            Button() {
-                //remove stock if more than zero items
-                if scanHandler.scannedItems[itemIndex].quantity > 0 {
-                    scanHandler.scannedItems[itemIndex].quantity-=1
+            
+            Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
+            //add/remove quantity button
+            HStack {
+                Button() {
+                    //remove stock if more than zero items
+                    if scanHandler.scannedItems[itemIndex].quantity > 0 {
+                        scanHandler.scannedItems[itemIndex].quantity-=1
+                    }
                 }
-            }
             label: {
                 Text("Remove Stock").padding(.trailing)
             }
-            
-            //Spacer()
-            
-            Button() {
-                //add stock
-                scanHandler.scannedItems[itemIndex].quantity+=1
                 
-            }
+                //Spacer()
+                
+                Button() {
+                    //add stock
+                    scanHandler.scannedItems[itemIndex].quantity+=1
+                    
+                }
             label: {
                 Text("Add Stock").padding(.leading)
             }
-        }
+            }
         }
         
     }
@@ -224,13 +224,13 @@ struct ItemDeleteView: View {
                         //close the view and go back
                         self.presentationMode.wrappedValue.dismiss()
                     }
-                    label: {
-                        Text("CONFIRM DELETE").padding(.leading)
-                    }
+                label: {
+                    Text("CONFIRM DELETE").padding(.leading)
                 }
-            
+                }
+                
             }
-        
+            
         }
         
     }
@@ -260,21 +260,21 @@ struct ItemEditView: View {
         
         ScrollView{
             VStack{
-            //Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
+                //Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
                 Text("Edit Food Details")
                 //stupid xcode only allowing 10 views :(
                 //forced to group the shit together
                 Group{
-                noNillTextEditButton(label: "Brand Name", value: $foodObj.brand_name)
-                noNillTextEditButton(label: "Item Name", value: $foodObj.item_name )
-                TextEditButton(label: "Item Description", value: $foodObj.item_description)
-                TextEditButton(label: "Ingredient Statement", value: $foodObj.nf_ingredient_statement)
-                numberTextEditButton(label: "Water grams", value: $foodObj.nf_water_grams)
-                numberTextEditButton(label: "Calories", value: $foodObj.nf_calories)
-                numberTextEditButton(label: "Calories from Fat", value: $foodObj.nf_calories_from_fat)
-                numberTextEditButton(label: "Total Fat", value: $foodObj.nf_total_fat)
-                numberTextEditButton(label: "Saturated Fat", value: $foodObj.nf_saturated_fat)
-                numberTextEditButton(label: "Trans Fatty Acid", value: $foodObj.nf_trans_fatty_acid)
+                    noNillTextEditButton(label: "Brand Name", value: $foodObj.brand_name)
+                    noNillTextEditButton(label: "Item Name", value: $foodObj.item_name )
+                    TextEditButton(label: "Item Description", value: $foodObj.item_description)
+                    TextEditButton(label: "Ingredient Statement", value: $foodObj.nf_ingredient_statement)
+                    numberTextEditButton(label: "Water grams", value: $foodObj.nf_water_grams)
+                    numberTextEditButton(label: "Calories", value: $foodObj.nf_calories)
+                    numberTextEditButton(label: "Calories from Fat", value: $foodObj.nf_calories_from_fat)
+                    numberTextEditButton(label: "Total Fat", value: $foodObj.nf_total_fat)
+                    numberTextEditButton(label: "Saturated Fat", value: $foodObj.nf_saturated_fat)
+                    numberTextEditButton(label: "Trans Fatty Acid", value: $foodObj.nf_trans_fatty_acid)
                 }
                 Group{
                     numberTextEditButton(label: "Polyunsaturated Fat", value: $foodObj.nf_polyunsaturated_fat)
@@ -298,13 +298,13 @@ struct ItemEditView: View {
                 }
                 
             }
-            }
-            
-            
-            
-
-            
-            
+        }
+        
+        
+        
+        
+        
+        
         
         
     }
