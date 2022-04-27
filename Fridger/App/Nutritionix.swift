@@ -84,7 +84,7 @@ class ScanHandler: NSObject, ObservableObject {
                 return
             }
         }
-
+        
         scannedItems = []
     }
     
