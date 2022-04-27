@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Item count: " + String(scanHandler.scannedItems.count))
+                Text("Items inside fridge: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
                 
                 List{
                     NavigationLink(destination: ItemListView().environmentObject(scanHandler)) {
