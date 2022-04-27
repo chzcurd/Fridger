@@ -112,12 +112,12 @@ class ScanHandler: NSObject, ObservableObject {
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
+                print(error as Any)
                 return
             } else {
                 let httpResponse = response as? HTTPURLResponse
-                print(httpResponse)
-                print(data)
+                print(httpResponse as Any)
+                print(data as Any)
                 
                 
                 var food : foodOBJ?
@@ -131,7 +131,7 @@ class ScanHandler: NSObject, ObservableObject {
                     print("error: ", error)
                 }
                 
-                print(food)
+                print(food as Any)
                 
                 returnvar = foodItem(upc: code, quantity: 1, foodOBJ: food ?? foodOBJ(item_name: "Item name not set", brand_name: "Brand name not set"))
                 
@@ -150,7 +150,7 @@ class ScanHandler: NSObject, ObservableObject {
         //self.scannedItems.append(returnvar!)
         
         print("done returnvar = ")
-        print(returnvar)
+        print(returnvar as Any)
         self.currentItem = returnvar
         //return returnvar
     }

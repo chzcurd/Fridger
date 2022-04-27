@@ -25,7 +25,7 @@ struct ItemListView: View {
                 
                 List {
                     ForEach(scanHandler.scannedItems, id: \.upc) { item in
-                        var itemIndex = scanHandler.scannedItems.firstIndex(where: {item2 in item.upc == item2.upc}) ?? -1
+                        let itemIndex = scanHandler.scannedItems.firstIndex(where: {item2 in item.upc == item2.upc}) ?? -1
                         
                         NavigationLink(destination:
                                         
