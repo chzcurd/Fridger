@@ -13,6 +13,7 @@ struct ScannerView: View {
     @State private var scannedCode: String?
     @State private var alreadyScanned = false
     @State private var alreadyScannedIndex = 0
+    @State private var theItemThatWasScanned = foodOBJ(item_name: "No data", brand_name: "No data")
     //@Binding var scannedItems : [foodOBJ]
     
     @EnvironmentObject var scanHandler: ScanHandler
@@ -34,14 +35,18 @@ struct ScannerView: View {
             if (scanHandler.currentItem != nil && alreadyScanned == false) {
                 VStack{
                     //print(food?.item_name)
-                    Text((scanHandler.currentItem?.foodOBJ.brand_name) ?? "no data")
-                    Text((scanHandler.currentItem?.foodOBJ.item_name) ?? ":(")
+                    Text(theItemThatWasScanned.brand_name)
+                    Text(theItemThatWasScanned.item_name)
                     Button() {
+                        //set foodOBJ to edited version
+                        scanHandler.currentItem!.foodOBJ = theItemThatWasScanned
                         //add the item to the cart
                         scanHandler.scannedItems.append(scanHandler.currentItem!)
                         
                         //remove the current item from scan handler
                         scanHandler.currentItem = nil
+                        //reset the edited food obj to new food item
+                        theItemThatWasScanned = foodOBJ(item_name: "No Data", brand_name: "No Data")
                         
                         //close the view and go back
                         self.presentationMode.wrappedValue.dismiss()
@@ -51,12 +56,10 @@ struct ScannerView: View {
                     }
                     
                     NavigationLink(destination:
-                                    Text("not implemented")
-                                   //crashes for some reason
-                                   //ItemEditView(foodObj: $scanHandler.currentItem.foodOBJ)
+                                   ItemEditView(foodObj: $theItemThatWasScanned)
                     ) {
                         //button text
-                        Text("NOT IMPLEMENTED BEFORE ADD COMPLETE Edit Item Details")
+                        Text("Edit Item Details")
                     }.padding(.top)
                     
                 }
@@ -99,6 +102,9 @@ struct ScannerView: View {
                     if alreadyScannedIndex == -1 {
                         alreadyScanned = false
                         scanHandler.getUPC(code: result.string)
+                        //set the editable food obj to the result that came back from the barcode api
+                        theItemThatWasScanned = scanHandler.currentItem!.foodOBJ
+
                     }
                     else{
                         scanHandler.currentItem = nil
