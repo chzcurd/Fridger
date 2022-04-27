@@ -10,38 +10,55 @@ import SwiftUI
 struct ItemListView: View {
     
     @EnvironmentObject var scanHandler: ScanHandler
+    @State var databaseView: Bool
+    @State var titleText: String
     var body: some View {
         
         NavigationView {
             VStack {
                 //getItemCountInFridge()
                 //var itemCount = getItemCountInFridge().environmentObject(scanHandler)
-                HStack{
-                    Text("Database Items: " + String(scanHandler.scannedItems.count))
-                    Text("|")
-                    Text("In Fridge Count: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
-                    
-                }
+                    if databaseView {
+                        Text("Database Items: " + String(scanHandler.scannedItems.count))
+                    }
+                    else {
+                        Text("In Fridge Count: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
+                    }
                 
                 List {
                     ForEach(scanHandler.scannedItems, id: \.upc) { item in
                         let itemIndex = scanHandler.scannedItems.firstIndex(where: {item2 in item.upc == item2.upc}) ?? -1
                         
-                        NavigationLink(destination:
-                                        
-                                        //navigate to item page
-                                       ItemView(itemIndex: itemIndex).environmentObject(scanHandler)
-                        ) {
-                            //button text
-                            ItemListButton(itemIndex: itemIndex).environmentObject(scanHandler)
+                        if databaseView {
+                            NavigationLink(destination:
+                                            
+                                            //navigate to item page
+                                           ItemView(itemIndex: itemIndex,databaseView: databaseView).environmentObject(scanHandler)
+                            ) {
+                                //button text
+                                ItemListButton(itemIndex: itemIndex).environmentObject(scanHandler)
+                            }
                         }
+                        else {
+                            if (scanHandler.scannedItems[itemIndex].quantity > 0) {
+                                NavigationLink(destination:
+                                                
+                                                //navigate to item page
+                                               ItemView(itemIndex: itemIndex,databaseView: databaseView).environmentObject(scanHandler)
+                                ) {
+                                    //button text
+                                    ItemListButton(itemIndex: itemIndex).environmentObject(scanHandler)
+                                }
+                            }
+                        }
+                        
                     }
                 }
                 
                 
             }
         }
-        .navigationBarTitle(Text("Scanned Items"))
+        .navigationBarTitle(Text(titleText))
         .onAppear(perform: {scanHandler.currentItem = nil})
         
         .navigationViewStyle(StackNavigationViewStyle())
@@ -58,6 +75,7 @@ struct ItemView: View {
     @EnvironmentObject var scanHandler: ScanHandler
     
     @State var itemIndex : Int
+    @State var databaseView : Bool
     
     var body: some View {
         
@@ -69,7 +87,7 @@ struct ItemView: View {
             if (itemIndex >= 0) {
                 
                 ItemQtyEditView(itemIndex: $itemIndex)
-                
+                if databaseView {
                 NavigationLink(destination:
                                 //navigate to item page
                                ItemEditView(foodObj: $scanHandler.scannedItems[itemIndex].foodOBJ)
@@ -77,7 +95,7 @@ struct ItemView: View {
                     //button text
                     Text("Edit Item Details")
                 }.padding(.top)
-                
+                }
                 
                 Spacer()
                 
@@ -88,9 +106,10 @@ struct ItemView: View {
                 Text("Calories: " + String((scanHandler.scannedItems[itemIndex].foodOBJ.nf_calories ?? 0.0)))
                 
                 Spacer()
+                if databaseView {
                 ItemDeleteView(itemIndex: $itemIndex, alreadyScanned: .constant(true)).environmentObject(scanHandler)
                 Spacer()
-                
+                }
                 
             }
             

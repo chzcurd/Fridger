@@ -19,12 +19,15 @@ struct ContentView: View {
                 Text("Items inside fridge: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
                 
                 List{
-                    NavigationLink(destination: ItemListView().environmentObject(scanHandler)) {
-                        Text("View Scanned Items")
+                    NavigationLink(destination: ItemListView(databaseView: false, titleText: "In the Fridge").environmentObject(scanHandler)) {
+                        Text("View Fridge")
                     }
                     
                     NavigationLink(destination: ScannerView().environmentObject(scanHandler)) {
                         Text("Scan Item")
+                    }
+                    NavigationLink(destination: ItemListView(databaseView: true, titleText: "Food Database").environmentObject(scanHandler)) {
+                        Text("View Database")
                     }
                     
                     
