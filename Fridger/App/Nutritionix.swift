@@ -64,12 +64,27 @@ struct foodOBJ : Codable {
 class ScanHandler: NSObject, ObservableObject {
     let defaults = UserDefaults()
     
-    @Published var scannedItems: Array<foodItem> =  []
+    @Published var scannedItems = [foodItem]() {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(scannedItems) {
+                UserDefaults.standard.set(encoded, forKey: "Items")
+            }
+        }
+    }
     @Published var currentItem: foodItem? = nil
     
     static let shared = ScanHandler()
     
-    private override init() {}
+    private override init() {
+        if let savedItems = UserDefaults.standard.data(forKey: "Items") {
+            if let decodedItems = try? JSONDecoder().decode([foodItem].self, from: savedItems) {
+                scannedItems = decodedItems
+                return
+            }
+        }
+
+        scannedItems = []
+    }
     
     
     func getUPC(code : String) {
@@ -136,16 +151,6 @@ class ScanHandler: NSObject, ObservableObject {
         print(returnvar)
         self.currentItem = returnvar
         //return returnvar
-    }
-    
-    func saveData() {
-        let userDefaults = UserDefaults()
-        userDefaults.setValue(try? PropertyListEncoder().encode(scannedItems), forKey: "scannedItems")
-        
-    }
-    
-    func loadData() {
-        scannedItems = defaults.value(forKey: "scannedItems") as! Array<foodItem>
     }
     
     
