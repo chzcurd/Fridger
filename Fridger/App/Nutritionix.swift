@@ -18,14 +18,14 @@ struct foodItem: Codable {
 
 
 struct foodOBJ : Codable {
-    var old_api_id : String?
-    var item_id:String?
+    //var old_api_id : String?
+    //var item_id:String?
     var item_name:String
-    var leg_loc_id:String?
-    var brand_id:String?
+    //var leg_loc_id:String?
+    //var brand_id:String?
     var brand_name:String
     var item_description:String?
-    var updated_at:String?
+    //var updated_at:String?
     var nf_ingredient_statement:String?
     var nf_water_grams:Double?
     var nf_calories:Double?
@@ -45,20 +45,20 @@ struct foodOBJ : Codable {
     var nf_vitamin_c_dv:Double?
     var nf_calcium_dv:Double?
     var nf_iron_dv:Double?
-    var nf_refuse_pct:Double?
+    //var nf_refuse_pct:Double?
     var nf_servings_per_container:Double?
     var nf_serving_size_qty:Double?
     var nf_serving_size_unit:String?
     var nf_serving_weight_grams:Double?
-    var allergen_contains_milk:Bool?
-    var allergen_contains_eggs:Bool?
-    var allergen_contains_fish:Bool?
-    var allergen_contains_shellfish:Bool?
-    var allergen_contains_tree_nuts:Bool?
-    var allergen_contains_peanuts:Bool?
-    var allergen_contains_wheat:Bool?
-    var allergen_contains_soybeans:Bool?
-    var allergen_contains_gluten:Bool?
+    //var allergen_contains_milk:Bool?
+    //var allergen_contains_eggs:Bool?
+    //var allergen_contains_fish:Bool?
+    //var allergen_contains_shellfish:Bool?
+    //var allergen_contains_tree_nuts:Bool?
+    //var allergen_contains_peanuts:Bool?
+    //var allergen_contains_wheat:Bool?
+    //var allergen_contains_soybeans:Bool?
+    //var allergen_contains_gluten:Bool?
     //"usda_fields":NULL
 }
 
