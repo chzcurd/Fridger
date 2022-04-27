@@ -252,7 +252,7 @@ func getItemCountInFridge(scannedItems: [foodItem]) -> Int {
 
 struct ItemEditView: View {
     
-    @EnvironmentObject var scanHandler: ScanHandler
+    //@EnvironmentObject var scanHandler: ScanHandler
     
     @Binding var foodObj : foodOBJ
     
