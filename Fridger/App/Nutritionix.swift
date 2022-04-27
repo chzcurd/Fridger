@@ -65,6 +65,7 @@ class ScanHandler: NSObject, ObservableObject {
     let defaults = UserDefaults()
     
     @Published var scannedItems = [foodItem]() {
+        //save the data every time it changes
         didSet {
             if let encoded = try? JSONEncoder().encode(scannedItems) {
                 UserDefaults.standard.set(encoded, forKey: "Items")
@@ -75,6 +76,7 @@ class ScanHandler: NSObject, ObservableObject {
     
     static let shared = ScanHandler()
     
+    //load in the saved data instead
     private override init() {
         if let savedItems = UserDefaults.standard.data(forKey: "Items") {
             if let decodedItems = try? JSONDecoder().decode([foodItem].self, from: savedItems) {
