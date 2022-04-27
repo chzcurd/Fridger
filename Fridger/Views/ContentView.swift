@@ -26,24 +26,7 @@ struct ContentView: View {
                     NavigationLink(destination: ScannerView().environmentObject(scanHandler)) {
                         Text("Scan Item")
                     }
-                    //temp save and load data buttons
-                    HStack {
-                        Button() {
-                            //save cart data to phone memory
-                            scanHandler.saveData()
-                        }
-                        label: {
-                            Text("Save Data").padding(.trailing)
-                        }
-                        Spacer()
-                        Button() {
-                            //Load cart data to phone memory
-                            scanHandler.loadData()
-                        }
-                        label: {
-                            Text("Load Data").padding(.leading)
-                        }
-                    }
+                    
                     
                 }
             }
