@@ -262,10 +262,41 @@ struct ItemEditView: View {
             VStack{
             //Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
                 Text("Edit Food Details")
-            
+                //stupid xcode only allowing 10 views :(
+                //forced to group the shit together
+                Group{
                 noNillTextEditButton(label: "Brand Name", value: $foodObj.brand_name)
                 noNillTextEditButton(label: "Item Name", value: $foodObj.item_name )
+                TextEditButton(label: "Item Description", value: $foodObj.item_description)
+                TextEditButton(label: "Ingredient Statement", value: $foodObj.nf_ingredient_statement)
+                numberTextEditButton(label: "Water grams", value: $foodObj.nf_water_grams)
                 numberTextEditButton(label: "Calories", value: $foodObj.nf_calories)
+                numberTextEditButton(label: "Calories from Fat", value: $foodObj.nf_calories_from_fat)
+                numberTextEditButton(label: "Total Fat", value: $foodObj.nf_total_fat)
+                numberTextEditButton(label: "Saturated Fat", value: $foodObj.nf_saturated_fat)
+                numberTextEditButton(label: "Trans Fatty Acid", value: $foodObj.nf_trans_fatty_acid)
+                }
+                Group{
+                    numberTextEditButton(label: "Polyunsaturated Fat", value: $foodObj.nf_polyunsaturated_fat)
+                    numberTextEditButton(label: "Monounsaturated Fat", value: $foodObj.nf_monounsaturated_fat)
+                    numberTextEditButton(label: "Cholesterol", value: $foodObj.nf_cholesterol)
+                    numberTextEditButton(label: "Sodium", value: $foodObj.nf_sodium)
+                    numberTextEditButton(label: "Total Carbohydrate", value: $foodObj.nf_total_carbohydrate)
+                    numberTextEditButton(label: "Dietary Fiber", value: $foodObj.nf_dietary_fiber)
+                    numberTextEditButton(label: "Sugars", value: $foodObj.nf_sugars)
+                    numberTextEditButton(label: "Protein", value: $foodObj.nf_protein)
+                    numberTextEditButton(label: "Vitamin A dv", value: $foodObj.nf_vitamin_a_dv)
+                    numberTextEditButton(label: "Vitamin C dv", value: $foodObj.nf_vitamin_c_dv)
+                }
+                Group{
+                    numberTextEditButton(label: "Calcium dv", value: $foodObj.nf_calcium_dv)
+                    numberTextEditButton(label: "Iron dv", value: $foodObj.nf_iron_dv)
+                    numberTextEditButton(label: "Servings per Container", value: $foodObj.nf_servings_per_container)
+                    numberTextEditButton(label: "Serving Size Qty", value: $foodObj.nf_serving_size_qty)
+                    TextEditButton(label: "Serving Size Unit", value: $foodObj.nf_serving_size_unit)
+                    numberTextEditButton(label: "Serving Weight Grams", value: $foodObj.nf_serving_weight_grams)
+                }
+                
             }
             }
             
