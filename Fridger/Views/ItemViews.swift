@@ -93,7 +93,7 @@ struct ItemView: View {
                                ItemEditView(foodObj: $scanHandler.scannedItems[itemIndex].foodOBJ)
                 ) {
                     //button text
-                    Text("Edit Item Details")
+                    Text("Edit Food Details")
                 }.padding(.top)
                 }
                 
@@ -217,7 +217,7 @@ struct ItemDeleteView: View {
                     confirmDelete = true
                 }
             label: {
-                Text("Remove scanned item from database")
+                Text("Remove Food from Database")
             }
             }
             else {
@@ -227,7 +227,7 @@ struct ItemDeleteView: View {
                         confirmDelete = false
                     }
                 label: {
-                    Text("KEEP ITEM").padding(.trailing)
+                    Text("KEEP FOOD").padding(.trailing)
                 }
                     
                     Button() {
