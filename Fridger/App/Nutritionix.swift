@@ -113,6 +113,7 @@ class ScanHandler: NSObject, ObservableObject {
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print(error as Any)
+                returnvar = foodItem(upc: code, quantity: 1, foodOBJ: foodOBJ(item_name: "Try again later", brand_name: "Server Error"))
                 return
             } else {
                 let httpResponse = response as? HTTPURLResponse
@@ -129,6 +130,7 @@ class ScanHandler: NSObject, ObservableObject {
                 }
                 catch {
                     print("error: ", error)
+                    returnvar = foodItem(upc: code, quantity: 0, foodOBJ: food ?? foodOBJ(item_name: "Try again later", brand_name: "Server Error"))
                 }
                 
                 print(food as Any)
