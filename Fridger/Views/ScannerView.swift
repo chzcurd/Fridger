@@ -31,8 +31,9 @@ struct ScannerView: View {
         }
             
             
-            Text("Scan result:")
+            //Text("Scan result:")
             if (scanHandler.currentItem != nil && alreadyScanned == false) {
+                Text("New Food Scanned:").font(.title).bold()
                 VStack{
                     //print(food?.item_name)
                     Text(theItemThatWasScanned.brand_name)
@@ -59,33 +60,38 @@ struct ScannerView: View {
                                     ItemEditView(foodObj: $theItemThatWasScanned)
                     ) {
                         //button text
-                        Text("Edit Item Details")
+                        Text("Edit Food Details")
                     }.padding(.top)
                     
                 }
             }
             //actions when item is already scanned
             if alreadyScanned {
-                Text("Item is already scanned, What would you like to do?")
                 
-                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ.brand_name) )
-                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ.item_name) )
-                
-                ItemDeleteView(itemIndex: $alreadyScannedIndex, alreadyScanned: $alreadyScanned).environmentObject(scanHandler)
-                
-                Spacer()
-                
-                ItemQtyEditView(itemIndex: $alreadyScannedIndex).environmentObject(scanHandler)
                 NavigationLink(destination:
                                 //navigate to item page
                                ItemEditView(foodObj: $scanHandler.scannedItems[alreadyScannedIndex].foodOBJ)
                 ) {
                     //button text
-                    Text("Edit Item Details")
+                    Text("Edit Food Details")
                 }.padding(.top)
+                ItemDeleteView(itemIndex: $alreadyScannedIndex, alreadyScanned: $alreadyScanned).environmentObject(scanHandler)
+
+                //Spacer()
+                Text("Scanned Food:").font(.title).bold().padding(.top)
                 
+                
+                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ.brand_name) )
+                Text((scanHandler.scannedItems[alreadyScannedIndex].foodOBJ.item_name) )
+                
+                
+                Spacer()
+                
+                ItemQtyEditView(itemIndex: $alreadyScannedIndex).environmentObject(scanHandler).padding(.bottom)
+                
+                //Spacer()
             }
-            Spacer()
+            //Spacer()
             
         }
         
