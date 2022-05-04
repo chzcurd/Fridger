@@ -14,8 +14,10 @@ struct settingsView: View {
     
     var body: some View {
         VStack{
-            Text("Settings view")
-            deleteDatabase().environmentObject(scanHandler)
+            Text("App Settings").font(.title)
+            //Spacer()
+            deleteDatabase().environmentObject(scanHandler).padding()
+            Spacer()
         }
     }
 }
