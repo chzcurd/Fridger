@@ -35,7 +35,7 @@ struct ContentView: View {
                     ItemListView(databaseView: false, titleText: "In the Fridge").environmentObject(scanHandler)
                     }
                         .tabItem() {
-                            Image(systemName: "slider.horizontal.3")
+                            Image(systemName: "fork.knife")
                             Text("View Fridge")
                     }
                         .tag(1)
@@ -44,16 +44,25 @@ struct ContentView: View {
                     }
                         .tabItem() {
                             Image(systemName: "barcode.viewfinder")
-                            Text("Scan Item")
+                            Text("Item Scanner")
                     }
                         .tag(2)
                     NavigationView{
                     ItemListView(databaseView: true, titleText: "Food Database").environmentObject(scanHandler)
                     }
                         .tabItem() {
-                            Image(systemName: "slider.horizontal.3")
+                            Image(systemName: "server.rack")
                             Text("View Database")
-                        }.tag(3)
+                    }
+                        .tag(3)
+                    NavigationView{
+                    Text("Settings Screen").environmentObject(scanHandler)
+                    }
+                        .tabItem() {
+                            Image(systemName: "slider.horizontal.3")
+                            Text("Settings")
+                    }
+                        .tag(4)
                     
                     
                 }
