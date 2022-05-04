@@ -30,6 +30,8 @@ struct deleteDatabase: View {
     
     var body: some View {
         HStack{
+        Text("")
+            
         if !confirmDelete {
             Button() {
                 confirmDelete = true
