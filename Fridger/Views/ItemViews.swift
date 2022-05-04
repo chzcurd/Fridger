@@ -217,7 +217,7 @@ struct ItemDeleteView: View {
                     confirmDelete = true
                 }
             label: {
-                Text("Remove Food from Database")
+                Text("Remove Food from Database").foregroundColor(Color.red)
             }
             }
             else {
@@ -244,7 +244,7 @@ struct ItemDeleteView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }
                 label: {
-                    Text("CONFIRM DELETE").padding(.leading)
+                    Text("CONFIRM DELETE").foregroundColor(Color.red).padding(.leading)
                 }
                 }
                 
