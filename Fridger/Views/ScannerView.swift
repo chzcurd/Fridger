@@ -23,12 +23,7 @@ struct ScannerView: View {
     var body: some View {
         VStack(spacing: 10) {
             
-            Button() {
-                isPresentingScanner = true
-            }
-        label: {
-            Label("Scan barcode", systemImage: "barcode.viewfinder")
-        }
+            
             
             
             //Text("Scan result:")
@@ -44,13 +39,17 @@ struct ScannerView: View {
                         //add the item to the cart
                         scanHandler.scannedItems.append(scanHandler.currentItem!)
                         
+                        //set the items index
+                        alreadyScannedIndex = scanHandler.scannedItems.firstIndex(where: {item in item.upc == scanHandler.currentItem!.upc})!
+                        alreadyScanned = true
+                        
                         //remove the current item from scan handler
-                        scanHandler.currentItem = nil
+                        //scanHandler.currentItem = nil
                         //reset the edited food obj to new food item
                         theItemThatWasScanned = foodOBJ(item_name: "No Data", brand_name: "No Data")
                         
                         //close the view and go back
-                        self.presentationMode.wrappedValue.dismiss()
+                        //self.presentationMode.wrappedValue.dismiss()
                     }
                 label: {
                     Text("Add Scanned item to list")
@@ -66,7 +65,7 @@ struct ScannerView: View {
                 }
             }
             //actions when item is already scanned
-            if alreadyScanned {
+            if (scanHandler.currentItem != nil && alreadyScanned) {
                 
                 NavigationLink(destination:
                                 //navigate to item page
@@ -75,7 +74,8 @@ struct ScannerView: View {
                     //button text
                     Text("Edit Food Details")
                 }.padding(.top)
-                ItemDeleteView(itemIndex: $alreadyScannedIndex, alreadyScanned: $alreadyScanned).environmentObject(scanHandler)
+                //delete view doesnt work anymore with the tabs on it
+                //ItemDeleteView(itemIndex: $alreadyScannedIndex, alreadyScanned: $alreadyScanned).environmentObject(scanHandler)
 
                 //Spacer()
                 Text("Scanned Food:").font(.title).bold().padding(.top)
@@ -91,6 +91,14 @@ struct ScannerView: View {
                 
                 //Spacer()
             }
+            
+            Button() {
+                isPresentingScanner = true
+            }
+        label: {
+            Label("Scan barcode", systemImage: "barcode.viewfinder")
+        }
+        .padding(.bottom)
             //Spacer()
             
         }
@@ -113,7 +121,7 @@ struct ScannerView: View {
                         
                     }
                     else{
-                        scanHandler.currentItem = nil
+                        scanHandler.currentItem = foodItem(upc: "0", quantity: 0, foodOBJ: foodOBJ(item_name: "none", brand_name: "none"))
                         alreadyScanned = true
                     }
                     
