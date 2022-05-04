@@ -11,6 +11,7 @@ import SwiftUI
 
 struct settingsView: View {
     @EnvironmentObject var scanHandler: ScanHandler
+    //@State var settingsMessage
     
     var body: some View {
         VStack{
@@ -28,7 +29,7 @@ struct deleteDatabase: View {
     @State private var deleted = false
     
     var body: some View {
-        if !deleted{
+        HStack{
         if !confirmDelete {
             Button() {
                 confirmDelete = true
@@ -52,20 +53,26 @@ struct deleteDatabase: View {
                     scanHandler.scannedItems = []
                     confirmDelete = false
                     deleted = true
+                    print("database deleted!")
                 }
+                
+                
             label: {
                 Text("CONFIRM DELETE").foregroundColor(Color.red).padding(.leading)
             }
+            
             }
             
         }
-    }
-        else {
-            Text("Database has been deleted!")
+            
+        
+        Text("")
+            .alert(isPresented: $deleted) {
+                Alert(title: Text("Database Deleted!"), message: Text("The Food Database has been deleted!"), dismissButton: .default(Text("OK")))
+            }
         }
-        
-        
     }
+    
 }
 
 /*struct settingsViews_Previews: PreviewProvider {
