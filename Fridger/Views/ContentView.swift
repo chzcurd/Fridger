@@ -27,9 +27,15 @@ struct ContentView: View {
     )}
     
     var body: some View {
-            //VStack {
-                //Text("Items inside fridge: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
-                
+            //Fridger App title text
+            VStack {
+                HStack{
+                    Text("Fridger").font(.largeTitle).bold().fontWeight(.black).padding(.top)
+                    VStack{
+                        Text("").padding(.top)
+                        Text("What's in the fridge?").font(.caption).fontWeight(.light)
+                    }
+                }
                 TabView(selection: handler){
                     NavigationView{
                     ItemListView(databaseView: false, titleText: "In the Fridge").environmentObject(scanHandler)
@@ -56,7 +62,7 @@ struct ContentView: View {
                     }
                         .tag(3)
                     NavigationView{
-                    Text("Settings Screen").environmentObject(scanHandler)
+                    settingsView().environmentObject(scanHandler)
                     }
                         .tabItem() {
                             Image(systemName: "slider.horizontal.3")
@@ -67,7 +73,7 @@ struct ContentView: View {
                     
                 }
                 .onChange(of: selection, perform: {index in (scanHandler.currentItem = nil)})
-            //}
+            }
             //.navigationBarTitle(Text("Fridger"))
             //.onAppear(perform: {scanHandler.currentItem = nil})
         
