@@ -18,12 +18,12 @@ struct ItemListView: View {
             VStack {
                 //getItemCountInFridge()
                 //var itemCount = getItemCountInFridge().environmentObject(scanHandler)
-                    if databaseView {
-                        Text("Database Items: " + String(scanHandler.scannedItems.count))
-                    }
-                    else {
-                        Text("In Fridge Count: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
-                    }
+                if databaseView {
+                    Text("Database Items: " + String(scanHandler.scannedItems.count))
+                }
+                else {
+                    Text("In Fridge Count: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
+                }
                 
                 List {
                     ForEach(scanHandler.scannedItems, id: \.upc) { item in
@@ -88,13 +88,13 @@ struct ItemView: View {
                 
                 ItemQtyEditView(itemIndex: $itemIndex)
                 if databaseView {
-                NavigationLink(destination:
-                                //navigate to item page
-                               ItemEditView(foodObj: $scanHandler.scannedItems[itemIndex].foodOBJ)
-                ) {
-                    //button text
-                    Text("Edit Food Details")
-                }.padding(.top)
+                    NavigationLink(destination:
+                                    //navigate to item page
+                                   ItemEditView(foodObj: $scanHandler.scannedItems[itemIndex].foodOBJ)
+                    ) {
+                        //button text
+                        Text("Edit Food Details")
+                    }.padding(.top)
                 }
                 
                 Spacer()
@@ -107,8 +107,8 @@ struct ItemView: View {
                 
                 Spacer()
                 if databaseView {
-                ItemDeleteView(itemIndex: $itemIndex, alreadyScanned: .constant(true)).environmentObject(scanHandler)
-                Spacer()
+                    ItemDeleteView(itemIndex: $itemIndex, alreadyScanned: .constant(true)).environmentObject(scanHandler)
+                    Spacer()
                 }
                 
             }

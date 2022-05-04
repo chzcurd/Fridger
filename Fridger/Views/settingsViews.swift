@@ -30,55 +30,56 @@ struct deleteDatabase: View {
     
     var body: some View {
         HStack{
-        Text("")
+            //other empty textview so text is still centered after the other textview needed for the alert notificationˆ
+            Text("")
             
-        if !confirmDelete {
-            Button() {
-                confirmDelete = true
-            }
-        label: {
-            Text("Permenently Delete Database").foregroundColor(Color.red)
-        }
-        }
-        else {
-            
-            HStack{
+            if !confirmDelete {
                 Button() {
-                    confirmDelete = false
+                    confirmDelete = true
                 }
             label: {
-                Text("KEEP DATABASE").padding(.trailing)
+                Text("Permenently Delete Database").foregroundColor(Color.red)
             }
+            }
+            else {
                 
-                Button() {
-                    //remove the item from the cart
-                    scanHandler.scannedItems = []
-                    confirmDelete = false
-                    deleted = true
-                    print("database deleted!")
+                HStack{
+                    Button() {
+                        confirmDelete = false
+                    }
+                label: {
+                    Text("KEEP DATABASE").padding(.trailing)
+                }
+                    
+                    Button() {
+                        //remove the item from the cart
+                        scanHandler.scannedItems = []
+                        confirmDelete = false
+                        deleted = true
+                        print("database deleted!")
+                    }
+                    
+                    
+                label: {
+                    Text("CONFIRM DELETE").foregroundColor(Color.red).padding(.leading)
+                }
+                    
                 }
                 
-                
-            label: {
-                Text("CONFIRM DELETE").foregroundColor(Color.red).padding(.leading)
             }
             
-            }
-            
-        }
-            
-        
-        Text("")
-            .alert(isPresented: $deleted) {
-                Alert(title: Text("Database Deleted!"), message: Text("The Food Database has been deleted!"), dismissButton: .default(Text("OK")))
-            }
+            //need the empty text view for the alert to appear
+            Text("")
+                .alert(isPresented: $deleted) {
+                    Alert(title: Text("Database Deleted!"), message: Text("The Food Database has been deleted!"), dismissButton: .default(Text("OK")))
+                }
         }
     }
     
 }
 
 /*struct settingsViews_Previews: PreviewProvider {
-    static var previews: some View {
-        settingsViews()
-    }
-}*/
+ static var previews: some View {
+ settingsViews()
+ }
+ }*/

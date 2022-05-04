@@ -68,15 +68,15 @@ struct ScannerView: View {
             if (scanHandler.currentItem != nil && alreadyScanned) {
                 
                 /*NavigationLink(destination:
-                                //navigate to item page
-                               ItemEditView(foodObj: $scanHandler.scannedItems[alreadyScannedIndex].foodOBJ)
-                ) {
-                    //button text
-                    Text("Edit Food Details")
-                }.padding(.top)*/
+                 //navigate to item page
+                 ItemEditView(foodObj: $scanHandler.scannedItems[alreadyScannedIndex].foodOBJ)
+                 ) {
+                 //button text
+                 Text("Edit Food Details")
+                 }.padding(.top)*/
                 //delete view doesnt work anymore with the tabs on it
                 //ItemDeleteView(itemIndex: $alreadyScannedIndex, alreadyScanned: $alreadyScanned).environmentObject(scanHandler)
-
+                
                 //Spacer()
                 Text("Scanned Food:").font(.title).bold()//.padding(.top)
                 
