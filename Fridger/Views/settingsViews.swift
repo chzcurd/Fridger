@@ -40,7 +40,13 @@ struct deleteDatabase: View {
             //other empty textview so text is still centered after the other textview needed for the alert notificationˆ
             Text("")
             
-            if !confirmDelete {
+            if (scanHandler.scannedItems.isEmpty) {
+                Text("Permenently Delete Database").foregroundColor(Color.gray)
+                if (confirmDelete) {
+                    let _ = DispatchQueue.main.async {confirmDelete = false}
+                }
+            }
+            else if (!confirmDelete) {
                 Button() {
                     confirmDelete = true
                 }
@@ -48,7 +54,7 @@ struct deleteDatabase: View {
                 Text("Permenently Delete Database").foregroundColor(Color.red)
             }
             }
-            else {
+            else if (confirmDelete && !scanHandler.scannedItems.isEmpty) {
                 
                 HStack{
                     Button() {
