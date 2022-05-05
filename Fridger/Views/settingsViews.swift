@@ -18,6 +18,8 @@ struct settingsView: View {
             Text("App Settings").font(.title)
             //Spacer()
             deleteDatabase().environmentObject(scanHandler).padding()
+            Text("Items in Database: " + String(scanHandler.scannedItems.count))
+            Text("In Fridge Count: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
             Spacer()
         }
     }

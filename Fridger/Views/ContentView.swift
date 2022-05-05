@@ -18,7 +18,7 @@ struct ContentView: View {
         get: { self.selection},
         set: {
             //if $0 == self.selection {
-            print("RESET THE TAB")
+            print("tab selected")
             //only reset when you are going to the screen
             if (self.selection != 2) {
             print("reset scanner")
