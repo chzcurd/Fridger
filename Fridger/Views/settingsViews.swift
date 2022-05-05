@@ -96,7 +96,7 @@ struct emptyFridge: View {
             //other empty textview so text is still centered after the other textview needed for the alert notificationˆ
             Text("")
             
-            if (scanHandler.scannedItems.isEmpty) {
+            if (scanHandler.scannedItems.isEmpty || getItemCountInFridge(scannedItems: scanHandler.scannedItems) == 0) {
                 Text("Empty Fridge").foregroundColor(Color.gray)
                 if (confirmDelete) {
                     let _ = DispatchQueue.main.async {confirmDelete = false}
@@ -110,7 +110,7 @@ struct emptyFridge: View {
                 Text("Empty Fridge").foregroundColor(Color.red)
             }
             }
-            else if (confirmDelete && !scanHandler.scannedItems.isEmpty) {
+            else if (confirmDelete && !scanHandler.scannedItems.isEmpty || getItemCountInFridge(scannedItems: scanHandler.scannedItems) == 0) {
                 
                 HStack{
                     Button() {
