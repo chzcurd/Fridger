@@ -56,7 +56,7 @@ struct ScannerView: View {
                 }
                     
                     NavigationLink(destination:
-                                    ItemEditView(foodObj: $theItemThatWasScanned)
+                                    ItemEditView(foodObj: $theItemThatWasScanned, ignoreDatabaseSize: true).environmentObject(scanHandler)
                     ) {
                         //button text
                         Text("Edit Food Details")
