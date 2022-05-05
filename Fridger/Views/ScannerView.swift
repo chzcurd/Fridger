@@ -134,8 +134,4 @@ struct ScannerView: View {
     }
 }
 
-struct ScannerView_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("no")
-    }
-}
+
