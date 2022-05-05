@@ -73,24 +73,26 @@ struct ItemListView: View {
 struct ItemView: View {
     
     @EnvironmentObject var scanHandler: ScanHandler
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     @State var itemIndex : Int
     @State var databaseView : Bool
     
     var body: some View {
-        
+        ScrollView{
         VStack{
             
             //Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
             
             
-            if (itemIndex >= 0) {
+            if (itemIndex >= 0 && (!scanHandler.scannedItems.isEmpty)) {
                 
                 ItemQtyEditView(itemIndex: $itemIndex)
                 if databaseView {
                     NavigationLink(destination:
                                     //navigate to item page
-                                   ItemEditView(foodObj: $scanHandler.scannedItems[itemIndex].foodOBJ)
+                                   ItemEditView(foodObj: $scanHandler.scannedItems[itemIndex].foodOBJ, ignoreDatabaseSize: false).environmentObject(scanHandler)
                     ) {
                         //button text
                         Text("Edit Food Details")
@@ -101,9 +103,38 @@ struct ItemView: View {
                 
                 Text("UPC Code: " + scanHandler.scannedItems[itemIndex].upc)
                 
-                Text("Brand Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.brand_name ))
-                Text("Item Name: " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_name ))
-                Text("Calories: " + String((scanHandler.scannedItems[itemIndex].foodOBJ.nf_calories ?? 0.0)))
+                Group{
+                    Text("Brand Name: " + scanHandler.scannedItems[itemIndex].foodOBJ.brand_name)
+                    Text("Item Name: " + scanHandler.scannedItems[itemIndex].foodOBJ.item_name )
+                    Text("Item Description: " + (scanHandler.scannedItems[itemIndex].foodOBJ.item_description ?? "Not Set"))
+                    Text("Ingredient Statement: " + (scanHandler.scannedItems[itemIndex].foodOBJ.nf_ingredient_statement ?? "Not Set"))
+                    Text("Water grams: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_water_grams ?? 0))
+                    Text("Calories: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_calories ?? 0))
+                    Text("Calories from Fat: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_calories_from_fat ?? 0))
+                    Text("Total Fat: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_total_fat ?? 0))
+                    Text("Saturated Fat: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_saturated_fat ?? 0))
+                    Text("Trans Fatty Acid: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_trans_fatty_acid ?? 0))
+                }
+                Group{
+                    Text("Polyunsaturated Fat: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_polyunsaturated_fat ?? 0))
+                    Text("Monounsaturated Fat: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_monounsaturated_fat ?? 0))
+                    Text("Cholesterol: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_cholesterol ?? 0))
+                    Text("Sodium: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_sodium ?? 0))
+                    Text("Total Carbohydrate: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_total_carbohydrate ?? 0))
+                    Text("Dietary Fiber: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_dietary_fiber ?? 0))
+                    Text("Sugars: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_sugars ?? 0))
+                    Text("Protein: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_protein ?? 0))
+                    Text("Vitamin A dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_vitamin_a_dv ?? 0))
+                    Text("Vitamin C dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_vitamin_c_dv ?? 0))
+                }
+                Group{
+                    Text("Calcium dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_calcium_dv ?? 0))
+                    Text("Iron dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_iron_dv ?? 0))
+                    Text("Servings per Container: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_servings_per_container ?? 0))
+                    Text("Serving Size Qty: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_serving_size_qty ?? 0))
+                    Text("Serving Size Unit: " + (scanHandler.scannedItems[itemIndex].foodOBJ.nf_serving_size_unit ?? "Not Set"))
+                    Text("Serving Weight Grams: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_serving_weight_grams ?? 0))
+                }
                 
                 Spacer()
                 if databaseView {
@@ -112,8 +143,13 @@ struct ItemView: View {
                 }
                 
             }
+            else {
+                let _ = self.presentationMode.wrappedValue.dismiss()
+                
+            }
             
             
+        }
             
             
             
@@ -160,10 +196,12 @@ struct ItemQtyEditView: View {
     @EnvironmentObject var scanHandler: ScanHandler
     
     @Binding var itemIndex : Int
+    //@Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     var body: some View {
         
-        if itemIndex >= 0 {
+        if (itemIndex >= 0 && (!scanHandler.scannedItems.isEmpty)) {
             
             
             Text("Qty in stock: " + String(scanHandler.scannedItems[itemIndex].quantity))
@@ -191,6 +229,7 @@ struct ItemQtyEditView: View {
             }
             }
         }
+        
         
     }
     
@@ -271,11 +310,17 @@ func getItemCountInFridge(scannedItems: [foodItem]) -> Int {
 
 struct ItemEditView: View {
     
-    //@EnvironmentObject var scanHandler: ScanHandler
+    @EnvironmentObject var scanHandler: ScanHandler
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     @Binding var foodObj : foodOBJ
+    var ignoreDatabaseSize : Bool
     
     var body: some View {
+        
+        if ((ignoreDatabaseSize) || ((!ignoreDatabaseSize) && (!scanHandler.scannedItems.isEmpty))) {
+            
         
         ScrollView{
             VStack{
@@ -320,8 +365,10 @@ struct ItemEditView: View {
         }
         
         
-        
-        
+        }
+        else {
+            let _ = self.presentationMode.wrappedValue.dismiss()
+        }
         
         
         
