@@ -100,6 +100,12 @@ struct ItemView: View {
                 }
                 
                 Spacer()
+                if databaseView {
+                    ItemDeleteView(itemIndex: $itemIndex, alreadyScanned: .constant(true)).environmentObject(scanHandler)
+                    Spacer()
+                }
+                
+                Spacer()
                 
                 Text("UPC Code: " + scanHandler.scannedItems[itemIndex].upc)
                 
@@ -136,11 +142,7 @@ struct ItemView: View {
                     Text("Serving Weight Grams: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_serving_weight_grams ?? 0))
                 }
                 
-                Spacer()
-                if databaseView {
-                    ItemDeleteView(itemIndex: $itemIndex, alreadyScanned: .constant(true)).environmentObject(scanHandler)
-                    Spacer()
-                }
+                
                 
             }
             else {
