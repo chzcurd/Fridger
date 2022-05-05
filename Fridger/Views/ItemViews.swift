@@ -134,12 +134,12 @@ struct ItemView: View {
                     Text("Dietary Fiber: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_dietary_fiber ?? 0))
                     Text("Sugars: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_sugars ?? 0))
                     Text("Protein: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_protein ?? 0))
-                    Text("Vitamin A dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_vitamin_a_dv ?? 0))
-                    Text("Vitamin C dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_vitamin_c_dv ?? 0))
+                    Text("Vitamin A dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_vitamin_a_dv ?? 0) + "%")
+                    Text("Vitamin C dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_vitamin_c_dv ?? 0) + "%")
                 }
                 Group{
-                    Text("Calcium dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_calcium_dv ?? 0))
-                    Text("Iron dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_iron_dv ?? 0))
+                    Text("Calcium dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_calcium_dv ?? 0) + "%")
+                    Text("Iron dv: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_iron_dv ?? 0) + "%")
                     Text("Servings per Container: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_servings_per_container ?? 0))
                     Text("Serving Size Qty: " + String(scanHandler.scannedItems[itemIndex].foodOBJ.nf_serving_size_qty ?? 0))
                     Text("Serving Size Unit: " + (scanHandler.scannedItems[itemIndex].foodOBJ.nf_serving_size_unit ?? "Not Set"))
