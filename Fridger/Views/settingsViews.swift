@@ -17,10 +17,14 @@ struct settingsView: View {
         VStack{
             Text("App Settings").font(.title)
             //Spacer()
-            emptyFridge().environmentObject(scanHandler).padding()
-            deleteDatabase().environmentObject(scanHandler).padding()
-            Text("Items in Database: " + String(scanHandler.scannedItems.count))
+            
+            Text("Items in Database: " + String(scanHandler.scannedItems.count)).padding(.top)
             Text("Items currently in Fridge: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
+            Spacer()
+
+            deleteDatabase().environmentObject(scanHandler).padding(.bottom)
+            emptyFridge().environmentObject(scanHandler).padding(.bottom)
+
             Spacer()
         }
     }
