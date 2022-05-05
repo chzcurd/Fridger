@@ -25,7 +25,7 @@ struct settingsView: View {
             deleteDatabase().environmentObject(scanHandler).padding(.bottom)
             emptyFridge().environmentObject(scanHandler).padding(.bottom)
 
-            //Spacer()
+            Spacer()
         }
     }
 }
