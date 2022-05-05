@@ -18,7 +18,7 @@ struct settingsView: View {
             Text("App Settings").font(.title)
             //Spacer()
             
-            Text("Items in Database: " + String(scanHandler.scannedItems.count)).padding(.top)
+            Text("Unique items in Database: " + String(scanHandler.scannedItems.count)).padding(.top)
             Text("Items currently in Fridge: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
             Spacer()
 
