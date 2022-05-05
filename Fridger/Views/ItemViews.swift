@@ -87,6 +87,10 @@ struct ItemView: View {
             
             
             if (itemIndex >= 0 && (!scanHandler.scannedItems.isEmpty)) {
+                //if fridge is emptied, go back in fridge view
+                if (!databaseView && scanHandler.scannedItems[itemIndex].quantity <= 0) {
+                    let _ = self.presentationMode.wrappedValue.dismiss()
+                }
                 
                 ItemQtyEditView(itemIndex: $itemIndex)
                 if databaseView {
