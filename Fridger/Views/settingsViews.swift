@@ -17,6 +17,7 @@ struct settingsView: View {
         VStack{
             Text("App Settings").font(.title)
             //Spacer()
+            emptyFridge().environmentObject(scanHandler).padding()
             deleteDatabase().environmentObject(scanHandler).padding()
             Text("Items in Database: " + String(scanHandler.scannedItems.count))
             Text("Items currently in Fridge: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
@@ -54,7 +55,7 @@ struct deleteDatabase: View {
                 }
                     
                     Button() {
-                        //remove the item from the cart
+                        //delete the database
                         scanHandler.scannedItems = []
                         confirmDelete = false
                         deleted = true
@@ -74,6 +75,66 @@ struct deleteDatabase: View {
             Text("")
                 .alert(isPresented: $deleted) {
                     Alert(title: Text("Database Deleted!"), message: Text("The Food Database has been deleted!"), dismissButton: .default(Text("OK")))
+                }
+        }
+    }
+    
+}
+
+
+struct emptyFridge: View {
+    @EnvironmentObject var scanHandler: ScanHandler
+    @State private var confirmDelete = false
+    @State private var deleted = false
+    
+    var body: some View {
+        HStack{
+            //other empty textview so text is still centered after the other textview needed for the alert notificationˆ
+            Text("")
+            
+            if !confirmDelete {
+                Button() {
+                    confirmDelete = true
+                }
+            label: {
+                Text("Empty Fridge").foregroundColor(Color.red)
+            }
+            }
+            else {
+                
+                HStack{
+                    Button() {
+                        confirmDelete = false
+                    }
+                label: {
+                    Text("KEEP FRIDGE").padding(.trailing)
+                }
+                    
+                    Button() {
+                        //remove the item from the fridge
+                        scanHandler.scannedItems.forEach{ item in
+                            let itemIndex = scanHandler.scannedItems.firstIndex(where: {item2 in item.upc == item2.upc}) ?? -1
+                            scanHandler.scannedItems[itemIndex].quantity = 0
+                        }
+                        
+                        confirmDelete = false
+                        deleted = true
+                        print("FRIDGE EMPTIED!")
+                    }
+                    
+                    
+                label: {
+                    Text("CONFIRM EMPTY").foregroundColor(Color.red).padding(.leading)
+                }
+                    
+                }
+                
+            }
+            
+            //need the empty text view for the alert to appear
+            Text("")
+                .alert(isPresented: $deleted) {
+                    Alert(title: Text("Fridge Emptied!"), message: Text("All food has been removed from the Fridge!"), dismissButton: .default(Text("OK")))
                 }
         }
     }
