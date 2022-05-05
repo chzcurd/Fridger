@@ -19,7 +19,7 @@ struct ItemListView: View {
                 //getItemCountInFridge()
                 //var itemCount = getItemCountInFridge().environmentObject(scanHandler)
                 if databaseView {
-                    Text("Items in Database: " + String(scanHandler.scannedItems.count))
+                    Text("Unique items in Database: " + String(scanHandler.scannedItems.count))
                 }
                 else {
                     Text("Items currently in Fridge: " + String(getItemCountInFridge(scannedItems: scanHandler.scannedItems)))
