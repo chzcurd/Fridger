@@ -2,8 +2,9 @@
 //  FridgerApp.swift
 //  Fridger
 //
-//  Created by Josh Osmanski on 3/17/22.
+//  Created by Matthew Fallon on 3/17/22.
 //
+// Muahahah I'm trying to steal your credit!!!
 
 import SwiftUI
 
