@@ -100,7 +100,7 @@ class ScanHandler: NSObject, ObservableObject {
         
         let headers = [
             "X-RapidAPI-Host": "nutritionix-api.p.rapidapi.com",
-            "X-RapidAPI-Key": "***REMOVED***"
+            "X-RapidAPI-Key": "ENTER_API_KEY_HERE"
         ]
         
         let request = NSMutableURLRequest(url: NSURL(string: "https://nutritionix-api.p.rapidapi.com/v1_1/item?upc=" + code)! as URL,
